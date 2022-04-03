@@ -1,0 +1,178 @@
+/* inter-regular - latin */
+@import './quasar.variables.scss';
+
+@font-face {
+  font-family: 'Inter Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/inter-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+  url('../assets/fonts/inter-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../assets/fonts/inter-regular.woff') format('woff'), /* Modern Browsers */
+  url('../assets/fonts/inter-regular.ttf') format('truetype') /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Inter Medium';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+  url('../assets/fonts/inter-medium.woff2') format('woff2') /* Super Modern Browsers */
+}
+
+// declare a class which applies it
+.inter {
+  font-family: 'Inter Medium', sans-serif!important;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.roboto{
+  font-family: 'Roboto',sans-serif!important;
+}
+.bg-light {
+  background: $light;
+}
+
+.text-theme-black {
+  color: $theme-black;
+}
+.text-theme-text{
+  color: $theme-text;
+}
+.text-theme-dark {
+  color: $theme-dark;
+}
+.bg-theme-black {
+  background: $theme-black;
+}
+
+.text-theme-light {
+  color: $theme-light;
+}
+
+.bg-theme-light {
+  background: $theme-light;
+}
+
+.bg-theme-green {
+  background: $theme-green;
+}
+
+.text-theme-green {
+  color: $theme-green;
+}
+.text-cloud {
+  color: $cloud;
+}
+.relative-position {
+  position: relative !important;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.banner-title {
+  font-size: 32px;
+  font-weight: bold;
+  @media (max-width: $breakpoint-md-max){
+    font-size: 26px;
+  }
+  @media (max-width: $breakpoint-xs-max){
+    font-size: 18px;
+  }
+}
+
+.banner-paragraph {
+  font-size: 16px;
+  opacity: 0.7;
+   @media (max-width: $breakpoint-md-max){
+    font-size: 14px;
+  }
+  @media (max-width: $breakpoint-xs-max){
+    font-size: 12px;
+  }
+}
+.br-10{
+  border-radius: 10px;
+}
+.compare-btn{
+  position: fixed;
+  top: 50%;
+  transform: translateX(-50%);
+  z-index: 20001;
+  right:5%;
+}
+.h-lg{
+  height: 46px;
+}
+.hover-white:hover{
+  background: white!important;
+}
+
+
+
+@for $i from 1 through 40 {
+  .f-#{$i} {
+    font-size: $i + px !important;
+  }
+}
+
+
+
+@media  (max-width: $breakpoint-lg-max) {
+  @for $i from 1 through 70 {
+    .f-lg-#{$i} {
+      font-size: $i + px !important;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md-max) {
+  @for $i from 1 through 40 {
+    .f-md-#{$i} {
+      font-size: $i + px !important;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm-max) {
+  @for $i from 1 through 40 {
+    .f-sm-#{$i} {
+      font-size: $i + px !important;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-xs-max) {
+  @for $i from 1 through 40 {
+    .f-xs-#{$i} {
+      font-size: $i + px !important;
+    }
+  }
+
+}
+
+.shadow-inset{
+  border: 1px solid #5DAC31;
+  box-sizing: border-box;
+  box-shadow: inset 4px 4px 22px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+
+}
+.bg-input{
+  .q-field__inner{ background: #F9F9F9;}
+}
+.lh-40{
+  line-height: 40px;
+}
+.q-footer{z-index: 1999!important;}
+
+.list-none{
+  list-style: none;
+}
+.list-bold > li::marker {
+  font-weight: bold;
+}
