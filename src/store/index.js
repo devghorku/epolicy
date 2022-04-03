@@ -13,6 +13,7 @@ export default new Vuex.Store({
         accidentForm:{},
         endowmentForm:{},
         homeInsuranceForm:{},
+        currentTab:'term',
         policies: [
             {
                 "productId": 1,
@@ -1815,6 +1816,9 @@ export default new Vuex.Store({
         },
         empty_policy(state){
             state.comparedPolicies=[]
+        },
+        set_currentTab(state,tab){
+            state.currentTab=tab
         }
     },
     actions: {},

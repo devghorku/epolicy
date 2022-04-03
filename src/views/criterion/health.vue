@@ -11,6 +11,7 @@
       <q-space></q-space>
       <q-btn color="theme-green"
              class="text-capitalize"
+             size="lg"
              unelevated v-if="compareItem.length>0"
              @click="compareModal=true"
       >
@@ -40,8 +41,9 @@
           />
         </div>
         <div class="row" v-else-if="policyList.length>0">
-          <div class="col-12 col-sm-6 col-md-4 q-pa-sm" v-for="(policy,idx) in policyList" :key="idx">
-            <policy-card :policy="policy" @compare="setCompare"></policy-card>
+          <div class="col-12 col-xl-4 col-sm-6 q-pa-sm"
+               v-for="(policy,idx) in policyList" :key="idx">
+            <policy-card :policy="policy" @compare="setCompare" style="height: 100%"></policy-card>
           </div>
         </div>
         <div class="text-center text-theme-green f-20 text-weight-bold" v-else>
@@ -87,13 +89,20 @@ export default {
       this.loading=false
     },
     setCompare(val, item) {
-      if (val && !this.compareItem.find(i=>i.productId===item.productId)) {
-        this.compareItem.push(item)
-      } else {
+      if(!val && this.compareItem.findIndex(i => i.productId === item.productId)){
         var idx = this.compareItem.findIndex(i => i.productId === item.productId)
         if (idx !== -1) {
           this.compareItem.splice(idx, 1)
         }
+      }
+      else if(this.compareItem.length>=3){
+        this.$q.notify({
+          message: "Can't compare more than 3",
+          color: 'negative'
+        })
+      }
+      else if (val && !this.compareItem.find(i=>i.productId===item.productId)) {
+        this.compareItem.push(item)
       }
     }
   }

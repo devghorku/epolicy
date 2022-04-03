@@ -150,6 +150,7 @@ export default {
         {label: '8 Lac', value: 800000},
         {label: '9 Lac', value: 900000},
         {label: '10 Lac', value: 1000000},
+        {label: '15 Lac', value: 1500000},
         {label: '20 Lac', value: 2000000},
         {label: '25 Lac', value: 2500000},
         {label: '30 Lac', value: 3000000},
@@ -157,16 +158,21 @@ export default {
         {label: '50 Lac', value: 5000000},
         {label: '60 Lac', value: 6000000},
         {label: '70 Lac', value: 7000000},
+        {label: '75 Lac', value: 7500000},
         {label: '80 Lac', value: 8000000},
         {label: '90 Lac', value: 9000000},
         {label: '1 Cr', value: 10000000},
 
       ],
       incomeOptions: [
-        {label: "up to 5 Lakh", value: "5"}, {label: "5 - 10 Lakh", value: "10"}, {
+        {label: "up to 5 Lakh", value: "5"},
+        {label: "5 - 10 Lakh", value: "10"},
+        {
           label: "10 - 20 Lakh",
           value: "20"
-        }, {label: "20 - 50 Lakh", value: "50"}, {label: "50 Lakh - 1 Cr", value: "100"}, {
+        },
+        {label: "20 - 50 Lakh", value: "50"},
+        {label: "50 Lakh - 1 Cr", value: "100"}, {
           label: "1Cr - 5 Cr",
           value: "500"
         }, {label: "> 5 Cr", value: "1000"}

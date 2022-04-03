@@ -1,6 +1,6 @@
 <template>
-  <div class="q-px-lg-md q-px-md-xs q-py-md">
-    <q-card class="policy-card inter">
+  <div class="q-px-lg-md q-px-md-xs q-py-md h-100">
+    <q-card class="policy-card inter h-100">
       <div class="text-center relative-position" style="height: 80px">
         <div class="img-box flex">
           <q-img :src="$imgUrl+policy.providerLogo"

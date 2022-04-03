@@ -168,6 +168,9 @@ body {
 .lh-40{
   line-height: 40px;
 }
+.h-100{
+  height: 100%;
+}
 .q-footer{z-index: 1999!important;}
 
 .list-none{
@@ -175,4 +178,7 @@ body {
 }
 .list-bold > li::marker {
   font-weight: bold;
+}
+.white-nowrap{
+  white-space: nowrap;
 }

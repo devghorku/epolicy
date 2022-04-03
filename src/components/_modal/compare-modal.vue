@@ -1,7 +1,7 @@
 <template>
   <q-card style="width: 600px">
     <div class="q-pa-md f-24 text-weight-bold inter">
-      You have selected {{compareItem.length}} banks
+      You have selected {{compareItem.length}} insurance plans.
       <q-btn icon="close"
              class="float-right text-grey"
              outline

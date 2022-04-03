@@ -32,7 +32,7 @@
       <q-card class="shadow-inset">
         <q-card-section>
           <q-tabs
-              v-model="tab"
+              v-model="$store.state.currentTab"
               class="text-grey banner-tab"
               active-color="green"
               indicator-color="green"
@@ -73,7 +73,7 @@
                    class="text-capitalize">
             </q-tab>
           </q-tabs>
-          <q-tab-panels v-model="tab" animated>
+          <q-tab-panels v-model="$store.state.currentTab" animated>
             <q-tab-panel name="term">
               <term-form/>
             </q-tab-panel>

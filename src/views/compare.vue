@@ -19,7 +19,7 @@
                   <img :src="$imgUrl+insurance.providerLogo"
                        class="insurance-img"
                        alt="">
-                  <div class="f-24 text-weight-bold text-warning">
+                  <div class="f-24 text-weight-bold text-warning white-nowrap">
                     {{insurance.productName}}
                   </div>
                 </div>
@@ -28,7 +28,11 @@
             <tr>
               <td>Premium</td>
               <td v-for="(insurance,c_idx) in comparePolicyList" :key="'col2_'+c_idx">
-                <q-btn class="" color="theme-green br-10 full-width" size="lg" unelevated>
+                <q-btn class="br-10 full-width white-nowrap"
+                       color="theme-green"
+                       size="lg"
+                       @click="policy=insurance,purchaseModal=true"
+                       unelevated>
                   &#x20B9; {{insurance.yearlyPremium}} Anually
                 </q-btn>
               </td>
@@ -36,6 +40,7 @@
             <tr v-for="(field,r_idx) in mapInsurance.keys" :key="'row'+r_idx">
               <td>{{ field }}</td>
               <td v-for="(ins,c_idx) in mapInsurance.insurances" :key="'col'+r_idx+'_'+c_idx"
+
               >
                   {{ ins[field]?ins[field]:'' }}
               </td>
@@ -116,14 +121,19 @@
 <!--        </div>-->
       </div>
     </q-card>
+    <q-dialog v-model="purchaseModal">
+      <purchase-modal @close="purchaseModal=false" :policy-item="policy"></purchase-modal>
+    </q-dialog>
   </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
+import PurchaseModal from "@/components/_modal/purchase-modal";
 
 export default {
   name: "compare",
+  components: {PurchaseModal},
   computed: {
     ...mapGetters(['comparePolicyList']),
     mapInsurance(){
@@ -139,14 +149,18 @@ export default {
           compareItems.push(tmp)
           let arr_fetaure_keys=features.productFeatures.map(i=>i.name)
           keys=[...keys,...arr_fetaure_keys]
+          console.log(keys)
+
         }
       })
-      return {keys:keys,insurances:compareItems}
+      return {keys:[...new Set(keys)],insurances:compareItems}
     }
   },
   data() {
     return {
       selectedInsurance: null,
+      purchaseModal:false,
+      policy:{}
     }
   },
 
@@ -317,7 +331,8 @@ export default {
 }
 
 .insurance-img {
-  max-width: 150px;
+ width: 150px;
+  height: 100px;
 }
 
 .custom-table-mobile {
