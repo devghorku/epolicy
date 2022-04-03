@@ -2,19 +2,21 @@
   <q-form>
     <div class="row">
       <div class="col-12">
-        <label class="f-14">Annual Income</label>
-        <q-input outlined
-                 v-model="formLife.income"
-                 type="number"
-                 dense
-                 class="custom-select q-mb-md bg-input"
+        <label class="f-14">Annual Income Range</label>
+        <q-select outlined
+                  v-model="form.income"
+                  :options="incomeOptions"
+                  dense
+                  emit-value
+                  map-options
+                  class="custom-select q-mb-md bg-input"
         >
-        </q-input>
+        </q-select>
       </div>
       <div class="col-12">
         <label class="f-14">Cover</label>
         <q-select outlined
-                  v-model="formLife.cover"
+                  v-model="form.cover"
                   :options="cover_options"
                   dense
                   class="custom-select q-mb-md bg-input"
@@ -25,18 +27,22 @@
       <div class="col-12">
         <label class="f-14">Date of Birth</label>
         <q-input dense
+                 class="custom-input q-mb-md bg-input"
                  outlined
-                 class="custom-select q-mb-md bg-input"
-                 v-model="formLife.birth_date"
-                 mask="date"
-        >
+                 v-model="form.birth_date"
+                 mask="##/##/####"
+                 readonly
+                 error-message="Please enter valid age >=18 years"
+                 :error="!adultRuleValid(form.birth_date)"
+                 @click.prevent="$refs.birth_date.show()">
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
-              <q-popup-proxy ref="qDateProxy" transition-show="scale"
+              <q-popup-proxy ref="birth_date" transition-show="scale"
                              transition-hide="scale">
-                <q-date v-model="formLife.birth_date" default-view="Years">
+                <q-date v-model="form.birth_date" default-view="Years" mask="DD/MM/YYYY"
+                        :navigation-max-year-month="`${currentYear}/${currentMonth+1}`">
                   <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat/>
+                    <q-btn v-close-popup label="Close" color="primary" flat></q-btn>
                   </div>
                 </q-date>
               </q-popup-proxy>
@@ -48,7 +54,7 @@
       <div class="col-12">
         <label class="f-14">Occupation</label>
         <q-select outlined
-                 v-model="formLife.occupation"
+                 v-model="form.occupation"
                  type="text"
                  dense
                   :options="occupations"
@@ -59,10 +65,12 @@
       <div class="col-12">
         <label class="f-14">Pincode</label>
         <q-input outlined
-                 v-model="formLife.pincode"
-                 type="text"
+                 v-model="form.pincode"
                  dense
-                 class="custom-select q-mb-md bg-input"
+                 type="number"
+                 error-message="Please enter valid pincode"
+                 :error="!pinValid"
+                 class="q-mb-md bg-input"
         >
         </q-input>
       </div>
@@ -83,20 +91,47 @@ export default {
   name: "accident-form",
   data() {
     return {
-      formLife: {
-        birth_date: null,
+      currentYear: new Date().getFullYear(),
+      currentMonth: new Date().getMonth(),
+      adult_no: 1,
+      child_no: 0,
+      form: {
+        cover: 500000,
+        income: "50",
+        pincode:110003,
+        childrenDobs: [],
+        birth_date: ['28/06/1991'],
         gender: 'male',
         smoke: 'yes'
       },
       cover_options: [
-        {
-          label: 'Option 1',
-          value: '1',
-        },
-        {
-          label: 'Option 2',
-          value: '2',
-        }
+        {label: '5 Lac', value: 500000},
+        {label: '10 Lac', value: 1000000},
+        {label: '15 Lac', value: 1500000},
+        {label: '20 Lac', value: 2000000},
+        {label: '25 Lac', value: 2500000},
+        {label: '30 Lac', value: 3000000},
+        {label: '35 Lac', value: 3500000},
+        {label: '40 Lac', value: 4000000},
+        {label: '45 Lac', value: 4500000},
+        {label: '50 Lac', value: 5000000},
+        {label: '60 Lac', value: 6000000},
+        {label: '70 Lac', value: 7000000},
+        {label: '80 Lac', value: 8000000},
+        {label: '90 Lac', value: 9000000},
+        {label: '1 Cr', value: 10000000},
+        {label: '1.5 Cr', value: 15000000},
+        {label: '2 Cr', value: 20000000},
+
+      ],
+      incomeOptions: [
+        {label: "up to 5 Lakh", value: "5"},
+        {label: "5 - 10 Lakh", value: "10"},
+        {label: "10 - 20 Lakh", value: "20"},
+        {label: "20 - 50 Lakh", value: "50"},
+        {label: "50 Lakh - 1 Cr", value: "100"},
+        {label: "1Cr - 5 Cr", value: "500"},
+        {label: "> 5 Cr", value: "1000"}
       ],
       occupations: [
         'Accountant',
@@ -228,10 +263,19 @@ export default {
       ]
     }
   },
+  computed:{
+    pinValid(){
+      return this.form.pincode.toString().length===6;
+    },
+  },
   methods: {
     submitForm() {
       this.$router.push({name: 'personal-accident-criterion'})
-    }
+    },
+    adultRuleValid(val){
+      var age=this.$moment().diff(this.$moment(val,"DD/MM/YYYY"),'years',false)
+      return age>=18
+    },
   }
 }
 </script>

@@ -74,22 +74,22 @@ export default {
       plans: [
         {
           idx: 1,
-          text: 'Lörem ipsum hypoktig lyll i plasa prenedorade sor: det vill säga monosk.',
+          text: '<strong>35 years</strong><br> Anil chooses Health Plan of 10 lacs for 1 year. Anil makes a premium payment. ',
           img: require('@/assets/images/step/1.png')
         },
         {
           idx: 2,
-          text: 'Lörem ipsum hypoktig lyll i plasa prenedorade sor: det vill säga monosk.',
+          text: '<strong>3<sup>rd</sup> month</strong> <br>Some unexpected illness  happens, Anil has option to get admitted in the Network hospital or Non - Network Hospital.',
           img: require('@/assets/images/step/2.png')
         },
         {
           idx: 3,
-          text: 'Lörem ipsum hypoktig lyll i plasa prenedorade sor: det vill säga monosk.',
+          text: '<strong>Anil gets proper Treatment.</strong><br>Anil informs Insurer, register claim, insurer validates & provide proper documentation.',
           img: require('@/assets/images/step/3.png')
         },
         {
           idx: 4,
-          text: 'Lörem ipsum hypoktig lyll i plasa prenedorade sor: det vill säga monosk.',
+          text: '<strong>Anil gets cashless treatment in Network Hospital or gets reimbursement from Non- Network Hospital.</strong>',
           img: require('@/assets/images/step/4.png')
         }
       ],
