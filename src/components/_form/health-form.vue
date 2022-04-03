@@ -131,7 +131,7 @@ export default {
         cover: 500000,
         gender: "M",
         income: "50",
-        pincode:123456,
+        pincode:110003,
         adultsDobs: ['28/06/1991'],
         childrenDobs: []
       },

@@ -97,7 +97,7 @@ export default {
         birth_date: '28/06/1991',
         gender: "M",
         income: "50",
-        pincode:123456,
+        pincode:110003,
       },
       currentYear: new Date().getFullYear(),
       currentMonth: new Date().getMonth(),
