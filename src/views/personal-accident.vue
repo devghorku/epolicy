@@ -71,22 +71,22 @@ export default {
       plans: [
         {
           idx: 1,
-          text: 'Lörem ipsum hypoktig lyll i plasa prenedorade sor: det vill säga monosk.',
+          text: '<strong>35 years</strong><br> Anil chooses a PA Plan of 10 lacs for 1 year. Anil makes a premium payment. ',
           img: require('@/assets/images/step/1.png')
         },
         {
           idx: 2,
-          text: 'Lörem ipsum hypoktig lyll i plasa prenedorade sor: det vill säga monosk.',
+          text: '<strong>3<sup>rd</sup> month</strong><br>Some unexpected ACCIDENT  happens, Anil gets Disabled.',
           img: require('@/assets/images/step/2.png')
         },
         {
           idx: 3,
-          text: 'Lörem ipsum hypoktig lyll i plasa prenedorade sor: det vill säga monosk.',
+          text: '<strong>Anil gets proper Treatment.</strong><br>Anil informs Insurer, register claim & provide proper documentation.',
           img: require('@/assets/images/step/3.png')
         },
         {
           idx:4,
-          text: 'Lörem ipsum hypoktig lyll i plasa prenedorade sor: det vill säga monosk.',
+          text: '<strong>Anil gets compensation</strong>',
           img: require('@/assets/images/step/4.png')
         }
       ],
@@ -102,11 +102,11 @@ export default {
         },
         {
           q: 'Q3 : What are the benefits of a personal accident policy?',
-          ans: 'The main person being insured under a personal accident policy should be above 18 years old, and generally under 70 years. Dependent children can also be covered under the policy up to 25 year'
+          ans: 'A personal accident policy will cover you in case of accidental death, permanent disability, partial disability, and many other things like ambulance and hospitalization costs. You can also add your entire family under the policy and protect them from any unexpected incidents as well.'
         },
         {
           q: 'Q4 : How is the premium calculated in a personal accident policy? ',
-          ans: 'There are many factors which determine the premium of your Personal Accident insurance. Some of these are, the nature of your occupation, your income, age,'
+          ans: 'There are many factors which determine the premium of your Personal Accident insurance. Some of these are, the nature of your occupation, your income & age.'
         },
         {
           q: 'Q5 : Does the personal accident policy cover death?',
@@ -135,6 +135,11 @@ export default {
         {
           q:'Q11 : Do I still need a personal accident policy if I already have health insurance?',
           ans:'A standard health insurance policy is actually different from a personal accident policy. A health insurance will cover you in case of any illness and things like hospitalization costs are usually cashless or reimbursed to you. But, with a personal accident cover, you will get a lump sum amount to help you out at a time when financial support is needed.'
+
+        },
+        {
+          q:'Q12 : Is there any age limit for a personal accident policy?',
+          ans:'The main person being insured under a personal accident policy should be above 18 years old, and generally under 70 years. Dependent children can also be covered under the policy up to 25 years.'
 
         },
       ]
