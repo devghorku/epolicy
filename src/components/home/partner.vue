@@ -34,6 +34,13 @@ export default {
   data() {
     return {
       partners: [
+        {img: require('../../assets/images/partner/1.svg'), color: '#EA1822'},
+        {img: require('../../assets/images/partner/2.svg'), color: '#415095'},
+        {img: require('../../assets/images/partner/3.svg'), color: '#E41D24'},
+        {img: require('../../assets/images/partner/4.svg'), color: '#F7E008'},
+        {img: require('../../assets/images/partner/5.svg'), color: '#044FA2'},
+        {img: require('../../assets/images/partner/6.svg'), color: '#F1B556'},
+        {img: require('../../assets/images/partner/7.svg'), color: '#01AEF0'},
         {img: require('../../assets/images/partner/p1.png'), color: '#000000'},
         {img: require('../../assets/images/partner/p2.jpg'), color: '#18579A'},
         {img: require('../../assets/images/partner/p3.png'), color: '#4B5994'},
