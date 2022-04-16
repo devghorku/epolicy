@@ -1,14 +1,15 @@
 <template>
   <div class="filter q-py-lg">
     <div class="f-24 text-weight-bold q-mx-xl q-mb-sm">Filter</div>
-    <div class="f-16 text-theme-green text-weight-bold q-mx-xl q-mb-sm">Death Benefit</div>
+    <div class="f-16 text-theme-green text-weight-bold q-mx-xl q-mb-sm">Room Rent</div>
     <div class="q-mb-md">
       <q-option-group
           :options="death_options"
           type="checkbox"
           color="theme-green"
-          v-model="filter.death_options"
+          v-model="filter.room_rent"
           class="q-px-xl"
+          @input="$emit('change',filter)"
       />
     </div>
     <div class="f-16 text-theme-green text-weight-bold q-mx-xl q-mb-sm">Hospitalization</div>
@@ -19,6 +20,7 @@
           color="theme-green"
           v-model="filter.hospitalization"
           class="q-px-xl"
+          @input="$emit('change',filter)"
       />
     </div>
     <div class="f-16 text-theme-green text-weight-bold q-mx-xl q-mb-sm">PED Waiting</div>
@@ -29,6 +31,7 @@
           color="theme-green"
           v-model="filter.ped_waiting"
           class="q-px-xl"
+          @input="$emit('change',filter)"
       />
     </div>
 
@@ -41,30 +44,31 @@
 <script>
 export default {
   name: "filter-policy",
+
   data() {
     return {
       filter:{
-        death_options:[],
+        room_rent:[],
         hospitalization:[],
         ped_waiting:[],
       },
      death_options: [
-        {label: 'No Limit', value: 1},
-        {label: 'Single Private Room', value: 2},
-        {label: 'Single Private Room (Upgradable)', value: 3},
-        {label: '% of Sum Assured', value: 4},
+        {label: 'No Limit', value: "NL"},
+        {label: 'Single Private Room', value: "SPR"},
+        {label: 'Single Private Room (Upgradable)', value: "SPRU"},
+        {label: '% of Sum Assured', value: "PSA"},
       ],
       hospitalization: [
-        {label: 'OPD', value: 1},
-        {label: 'No Co-Payment', value: 2},
-        {label: 'Maternity', value: 3},
-        {label: 'Restoration', value: 4},
-        {label: 'Ayush Benefit', value: 5},
+        {label: 'OPD', value: 'opd'},
+        {label: 'No Co-Payment', value: 'ncp'},
+        {label: 'Maternity', value: 'maternity'},
+        {label: 'Restoration', value: 'restoration'},
+        {label: 'Ayush Benefit', value: 'ayush'},
       ],
       ped_waiting: [
-        {label: 'Covered after 2 Years', value: 1},
-        {label: 'Covered after 3 Years', value: 2},
-        {label: 'Covered after 4 Years', value: 3},
+        {label: 'Covered after 2 Years', value: 'CA2'},
+        {label: 'Covered after 3 Years', value: 'CA3'},
+        {label: 'Covered after 4 Years', value: 'CA4'},
       ]
     }
   }

@@ -20,7 +20,7 @@
     </div>
     <div class="row q-my-md">
       <div class="col-12 col-md-4 relative-position">
-        <filter-policy class="filter-sticky-box gt-sm q-my-md"></filter-policy>
+        <filter-policy class="filter-sticky-box gt-sm q-my-md" @change="filterChange"></filter-policy>
         <div class="filter-fixed-box lt-md">
           <q-btn icon="tune" color="theme-green" class="filter-btn">
             <q-menu :offset="[0, -40]" class="bg-purple">
@@ -28,7 +28,7 @@
                 <q-btn v-close-popup icon="close" flat>
                 </q-btn>
               </div>
-              <filter-policy class=""></filter-policy>
+              <filter-policy class="" @change="filterChange"></filter-policy>
             </q-menu>
           </q-btn>
         </div>
@@ -42,7 +42,7 @@
         </div>
         <div class="row" v-else-if="policyList.length>0">
           <div class="col-12 col-xl-4 col-sm-6 q-pa-sm"
-               v-for="(policy,idx) in policyList" :key="idx">
+               v-for="(policy,idx) in filteredPolicyList" :key="idx">
             <policy-card :policy="policy" @compare="setCompare" style="height: 100%"></policy-card>
           </div>
         </div>
@@ -68,7 +68,46 @@ export default {
   name: "term-criterion",
   components: {CompareModal, PolicyCard, FilterPolicy},
   computed: {
-    ...mapGetters(['getHealthForm'])
+    ...mapGetters(['getHealthForm']),
+    filteredPolicyList() {
+      var data = this.policyList
+      console.log(this.filter.room_rent)
+      if (this.filter.room_rent.length>0) {
+        data=data.filter(policy=>{
+          let val=this.getFeatureValue(policy,'Room Rent Limit')
+          return this.filter.room_rent.includes(val)
+        })
+      }
+      if(this.filter.ped_waiting.length>0){
+        data=data.filter(policy=>{
+          let val=this.getFeatureValue(policy,'PED Waiting Period')
+          return this.filter.ped_waiting.includes(val)
+        })
+      }
+      if(this.filter.hospitalization.length>0){
+        data=data.filter(policy=>{
+          let hosp=[];
+          if(this.getFeatureValue(policy,'OPD') === 'Y'){
+            hosp.push('opd')
+          }
+          if(this.getFeatureValue(policy,'No Co-Payment') === 'Y'){
+            hosp.push('ncp')
+          }
+          if(this.getFeatureValue(policy,'Maternity') === 'Y'){
+            hosp.push('maternity')
+          }
+          if(this.getFeatureValue(policy,'Restoration Benefit') === 'Y'){
+            hosp.push('restoration')
+          }
+          if(this.getFeatureValue(policy,'Ayush Benefit') === 'Y'){
+            hosp.push('ayush')
+          }
+          console.log(this.filter.hospitalization,hosp)
+          return this.filter.hospitalization.every( ai => hosp.includes(ai) )
+        })
+      }
+      return data
+    }
   },
   data() {
     return {
@@ -76,6 +115,11 @@ export default {
       policyList:[],
       compareItem: [],
       compareModal: false,
+      filter: {
+        room_rent: [],
+        hospitalization: [],
+        ped_waiting: [],
+      },
     }
   },
   async mounted(){
@@ -104,6 +148,23 @@ export default {
       else if (val && !this.compareItem.find(i=>i.productId===item.productId)) {
         this.compareItem.push(item)
       }
+    },
+    getProductFeature(product) {
+      let d = product.featureGroups.find(item => item.name === 'Filters')
+      if (d) {
+        return d.productFeatures
+      } else return []
+    },
+    getFeatureValue(product,name){
+      let feature = this.getProductFeature(product)
+      let sub_feature=feature.find(item=>item.name===name)
+      if(sub_feature){
+        return sub_feature.value
+      }
+    },
+    filterChange(item) {
+      this.filter = item;
+      console.log(this.filter.room_rent)
     }
   }
 
