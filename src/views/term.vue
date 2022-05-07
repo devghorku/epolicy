@@ -39,8 +39,8 @@
         </div>
       </div>
     </div>
-    <plan-works class="bg-light" :plans="plans"></plan-works>
-    <term-calculator/>
+<!--    <plan-works class="bg-light" :plans="plans"></plan-works>-->
+    <term-calculator class="bg-light"/>
     <faq class="bg-theme-green" :faqs="faqs" :headline="definition"/>
     <div>
       <div class="f-30 text-weight-bold text-center q-py-xl">Click to get a quote</div>
@@ -64,11 +64,11 @@ import TermCalculator from "../components/term/term-calculator";
 import Faq from "../components/faq";
 import QuoteSection from "../components/quote-section";
 import TermForm from "../components/_form/term-form";
-import PlanWorks from "../components/plan-works";
+// import PlanWorks from "../components/plan-works";
 
 export default {
   name: "term",
-  components: {PlanWorks, TermForm, QuoteSection, Faq, TermCalculator},
+  components: { TermForm, QuoteSection, Faq, TermCalculator},
   data() {
     return {
       dialog: false,

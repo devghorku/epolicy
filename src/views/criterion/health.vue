@@ -10,9 +10,9 @@
       </div>
       <q-space></q-space>
       <q-btn color="theme-green"
-             class="text-capitalize"
+             class="text-capitalize comp-btn"
              size="lg"
-             unelevated v-if="compareItem.length>0"
+              v-if="compareItem.length>0"
              @click="compareModal=true"
       >
         Compare

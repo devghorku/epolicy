@@ -34,38 +34,55 @@ export default {
   data() {
     return {
       settings: {
-        "centerPadding": "20px",
+        "centerPadding": "10px",
         "focusOnSelect": false,
         "infinite": false,
         "speed": 500,
-        "variableWidth": true,
-        "dots": true,
-        "slidesToShow": 1,
-        "slidesToScroll":6,
+        "variableWidth": false,
+        "dots": false,
+        "slidesToShow": 8,
+        "slidesToScroll":1,
         "arrows": false,
+        "centerMode":false,
         "responsive": [
+          {
+            "breakpoint": 1441,
+            "settings": {
+              "slidesToShow":7,
+              "dots": true,
+              "centerSlide":true
+            },
+
+          },
           {
             "breakpoint": 1024,
             "settings": {
-              "slidesToScroll": 4,
+              "slidesToShow": 5,
+              "dots": true,
             }
           },
           {
             "breakpoint": 768,
             "settings": {
-              "slidesToScroll": 3,
+              "slidesToShow": 4,
+              "slidesToScroll": 4,
+              "dots": true,
             }
           },
           {
             "breakpoint": 425,
             "settings": {
+              "slidesToShow": 2,
               "slidesToScroll": 2,
+              "dots": true,
             }
           },
           {
             "breakpoint": 320,
             "settings": {
+              "slidesToShow": 1.5,
               "slidesToScroll": 2,
+              "dots": true,
             }
           }
         ]

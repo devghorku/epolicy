@@ -15,7 +15,7 @@ import AccidentCriterion from '../views/criterion/accident'
 import HomeInsuranceCriterion from '../views/criterion/home-insurance'
 import EndowmentCriterion from '../views/criterion/endowment'
 import CriticalIllnessCriterion from '../views/criterion/critical-illness'
-
+import Error from '../views/404'
 Vue.use(VueRouter)
 
 const routes = [
@@ -86,6 +86,11 @@ const routes = [
         path: '/book-expert',
         name: 'book-expert',
         component: BookExpert
+    },
+    {
+        path: '/404',
+        name: 'not-found',
+        component: Error
     }
 ]
 

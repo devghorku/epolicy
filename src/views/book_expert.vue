@@ -64,7 +64,10 @@
       <div class="col-12 col-md-6 col-lg-4 col-xl-3 q-pa-lg"
            v-for="(expert,idx) in experts" :key="idx">
         <q-card class="hover-white book-card">
-          <q-img :src="expert.img"></q-img>
+          <div class="q-pt-sm">
+            <q-img :src="expert.img" height="150px" contain ></q-img>
+          </div>
+
           <q-card-section>
             <div class="text-center f-22 text-weight-bold">{{ expert.name }}</div>
             <div class="text-center f-22 text-grey q-pb-sm">{{ expert.position }}, {{ expert.company }}</div>
@@ -75,7 +78,8 @@
               <q-radio v-model="expert.type" color="theme-green" val="video">Video</q-radio>
             </div>
             <q-select :options="languages" dense
-                      outlined class="bg-input q-pb-sm f-18"
+                      outlined
+                      class="bg-input q-pb-sm f-18 text-capitalize"
                       v-model="expert.lang"
                       label="Select Language"></q-select>
             <q-btn class="slot q-mb-md q-mt-sm" size="sm" outline color="theme-green">
@@ -108,44 +112,32 @@ export default {
   data() {
     return {
       dialog: false,
-      languages: ['english', 'hindi'],
+      languages: ['English', 'Hindi'],
       experts: [
         {
           id: 1,
           name: 'Istiak Ahmed',
           position: 'CEO',
           company: 'Avito',
-          about: 'lorem',
+          about: 'I am your support manager',
           employee_no: '#2323',
           slot: 2,
-          img: require('@/assets/images/expert.png'),
+          img: require('@/assets/images/male.png'),
           type: 'audio',
-          lang: 'english'
+          lang: 'English'
         },
         {
           id: 1,
-          name: 'Istiak Ahmed',
-          position: 'CEO',
+          name: 'Alia Mananda',
+          position: 'SSE',
           company: 'Avito',
-          about: 'lorem',
+          about: 'I am your helping manager',
           employee_no: '#2323',
           slot: 2,
           type: 'audio',
-          img: require('@/assets/images/expert.png'),
-          lang: 'english'
+          img: require('@/assets/images/female.png'),
+          lang: 'English'
         },
-        {
-          id: 1,
-          name: 'Istiak Ahmed',
-          position: 'CEO',
-          company: 'Avito',
-          about: 'lorem',
-          employee_no: '#2323',
-          slot: 2,
-          img: require('@/assets/images/expert.png'),
-          type: 'audio',
-          lang: 'english'
-        }
       ],
       selectedDate: '',
       dragging: false, // used for drag-and-drop

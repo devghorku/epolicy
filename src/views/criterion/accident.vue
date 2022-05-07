@@ -10,9 +10,9 @@
       </div>
       <q-space></q-space>
       <q-btn color="theme-green"
-             class="text-capitalize"
+             class="text-capitalize comp-btn"
              size="lg"
-             unelevated v-if="compareItem.length>0"
+              v-if="compareItem.length>0"
              @click="compareModal=true"
       >
         Compare
@@ -70,15 +70,22 @@ export default {
   methods: {
 
     setCompare(val, item) {
-      if (val && !this.compareItem.find(i=>i.productId===item.productId)) {
-        this.compareItem.push(item)
-      } else {
+      if(!val && this.compareItem.findIndex(i => i.productId === item.productId)){
         var idx = this.compareItem.findIndex(i => i.productId === item.productId)
         if (idx !== -1) {
           this.compareItem.splice(idx, 1)
         }
       }
-    }
+      else if(this.compareItem.length>=3){
+        this.$q.notify({
+          message: "Can't compare more than 3",
+          color: 'negative'
+        })
+      }
+      else if (val && !this.compareItem.find(i=>i.productId===item.productId)) {
+        this.compareItem.push(item)
+      }
+    },
   }
 }
 </script>
