@@ -129,10 +129,10 @@ export default {
         {text: 'Term', link: '/term', img: require('@/assets/images/menu/term.svg')},
         {text: 'Health', link: '/health', img: require('@/assets/images/menu/health.svg')},
         {text: 'Personal Accident', link: '/personal-accident', img: require('@/assets/images/menu/accident.svg')},
-        {text: 'Endowment', link: '/endowment', img: require('@/assets/images/menu/endowment.svg')},
+        {text: 'Endowment', link: '/404', img: require('@/assets/images/menu/endowment.svg')},
         {text: 'Critical Illness', link: '/critical-illness', img: require('@/assets/images/menu/critical.svg')},
-        {text: 'Home Insurance', link: 'home-insurance', img: require('@/assets/images/menu/home.svg')},
-        {text: 'Motor Insurance', link: '/motor-insurance', img: require('@/assets/images/menu/motor.svg')},
+        {text: 'Home Insurance', link: '/404', img: require('@/assets/images/menu/home.svg')},
+        {text: 'Motor Insurance', link: '/404', img: require('@/assets/images/menu/motor.svg')},
         {text: 'About Us', link: '/about-us', img: require('@/assets/images/menu/user.svg'), mobile: true},
 
       ]

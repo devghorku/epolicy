@@ -125,11 +125,11 @@ export default {
 
       ],
       incomeOptions: [
-        {label: "up to 5 Lakh", value: "5"},
-        {label: "5 - 10 Lakh", value: "10"},
-        {label: "10 - 20 Lakh", value: "20"},
-        {label: "20 - 50 Lakh", value: "50"},
-        {label: "50 Lakh - 1 Cr", value: "100"},
+        {label: "up to 5 Lac", value: "5"},
+        {label: "5 - 10 Lac", value: "10"},
+        {label: "10 - 20 Lac", value: "20"},
+        {label: "20 - 50 Lac", value: "50"},
+        {label: "50 Lac - 1 Cr", value: "100"},
         {label: "1Cr - 5 Cr", value: "500"},
         {label: "> 5 Cr", value: "1000"}
       ],

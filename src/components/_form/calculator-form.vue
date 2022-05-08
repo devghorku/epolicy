@@ -7,6 +7,8 @@
                                           :options="liabilities"
                                           class="custom-select q-mb-md"
                                           stack-label
+                                          emit-value
+                                          map-options
                                           label="Current Liability"
                                 >
                                 </q-select>
@@ -17,6 +19,8 @@
                                           :options="incomes"
                                           class="custom-select q-mb-md"
                                           stack-label
+                                          emit-value
+                                          map-options
                                           label="Annual Income"
                                 >
                                 </q-select>
@@ -74,6 +78,8 @@
                 form: {
                   dob: "28/06/1991",
                 },
+              currentYear: new Date().getFullYear(),
+              currentMonth: new Date().getMonth(),
                 liabilities: [
                   {label: '10 Lac', value: 1000000},
                   {label: '20 Lac', value: 2000000},
@@ -109,7 +115,20 @@
           return age>=18
         },
         sum_assured(){
-          return 1000000
+          var age=this.$moment().diff(this.$moment(this.form.dob,"DD/MM/YYYY"),'years',false)
+          console.log(age,this.form)
+          let l=this.form.current_liability?parseInt(this.form.current_liability):0
+          let i=this.form.annual_income?parseInt(this.form.annual_income):0
+          if(age>=60){
+            return i*8+l
+          }else if(age>=50){
+            return i*12+l
+          }else if(age>=35){
+            return i*15+l
+          }else if(age>=18){
+            return i*20+l
+          }
+          return 0
         }
       }
     }

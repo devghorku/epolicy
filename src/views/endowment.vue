@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <plan-works class="bg-light" :plans="plans"></plan-works>
+<!--    <plan-works class="bg-light" :plans="plans"></plan-works>-->
     <faq class="bg-theme-green" :faqs="faqs" :headline="definition"/>
     <div>
       <div class="f-30 text-weight-bold text-center q-py-xl">Click to get a quote</div>
@@ -61,12 +61,12 @@
 <script>
 import Faq from "../components/faq";
 import QuoteSection from "../components/quote-section";
-import PlanWorks from "../components/plan-works";
+// import PlanWorks from "../components/plan-works";
 import EndowmentForm from "../components/_form/endowment-form";
 
 export default {
   name: "term",
-  components: {EndowmentForm, PlanWorks, QuoteSection, Faq},
+  components: {EndowmentForm, QuoteSection, Faq},
   data() {
     return {
       dialog: false,
