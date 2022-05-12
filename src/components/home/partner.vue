@@ -2,7 +2,7 @@
   <div class="partner-box">
     <div class="row q-pa-md-xl q-pa-xs-md items-center "
          style="min-height: 500px;max-width: 1440px;margin: auto">
-      <div class="col-12 col-lg-4 flex">
+      <div class="col-12 col-md-4 flex">
         <div style="max-width: 280px;margin: auto">
           <div class="f-36 f-md-30 text-weight-bold"
                :class="{'text-center':$q.screen.lt.lg}"
@@ -12,7 +12,7 @@
         </div>
 
       </div>
-      <div class="col-12 col-lg-8 flex justify-center">
+      <div class="col-12 col-md-8 flex justify-center">
         <div v-for="(partner,idx) in partners" :key="idx" class="partner-card">
           <div class="bg-white partner-img-box">
             <img :src="partner.img" class="partner-img" alt=""/>
@@ -56,12 +56,12 @@ export default {
 
 <style scoped lang="scss">
 .partner-card {
-  width: 130px;
+  width: 125px;
   height: 80px;
   position: relative;
-  margin: 40px 30px;
+  margin: 35px 25px;
   @media (max-width: $breakpoint-sm-max) {
-    margin: 30px 10px;
+    margin: 25px 5px;
   }
 
   .partner-img-box {
@@ -73,6 +73,8 @@ export default {
     padding: 2px;
     border-radius: 10px;
     text-align: center;
+    z-index: 2;
+    position: relative;
   }
 
 
@@ -83,7 +85,7 @@ export default {
     height: 48px;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.11);
     border-radius: 10px;
-    z-index: -1;
+    z-index: 1;
 
     bottom: -15px;
 

@@ -39,7 +39,7 @@
               </svg>
             </div>
             <div>
-              <img :src="slide.img" alt="" class="img"/>
+              <q-img :src="slide.img" alt="" class="img"  width="100px"/>
             </div>
             <div class="goNext">
             </div>
@@ -90,40 +90,13 @@ export default {
       testimonials: [
         {
           id: 1,
-          name: 'Aishe Chakraborthy',
-          img: require('@/assets/images/aishe.svg'),
-          text: "Got good & hassle - free deal without any agent calling or speaking to anyone."
+          name: 'Dr.Parikshit Bhalerao, Mumbai.',
+          img: require('@/assets/images/testimonal/parikshit.jpeg'),
+          text: "The team at epolicymart has helped me understand the nuances of various products and help me make an informed decision in selecting different insurance products.\n" +
+              "They have been a great support by providing prompt service in times of my need." +
+              "I highly recommend epolicymart as the choice of provider of all your insurance needs." +
+              "Thank you for your guidance & support."
         },
-        {
-          id: 1,
-          name: 'Arpit Gupta',
-          img: require('@/assets/images/aishe.svg'),
-          text: "Got good & hassle - free deal without any agent calling or speaking to anyone."
-        },
-        {
-          id: 1,
-          name: 'Sapna Khandelwal',
-          img: require('@/assets/images/aishe.svg'),
-          text: "The services provided by Epolicymart are extremely helpful in making the right choice."
-        },
-        {
-          id: 1,
-          name: 'Gaurav Jain',
-          img: require('@/assets/images/aishe.svg'),
-          text: "Very simple to use, friendly website."
-        },
-        {
-          id: 1,
-          name: 'Gargi Gupta',
-          img: require('@/assets/images/aishe.svg'),
-          text: "I appreciate your support in explaining all details with patience. Thank you so much."
-        },
-        {
-          id: 1,
-          name: 'Vipin Joshi',
-          img: require('@/assets/images/aishe.svg'),
-          text: "I’m glad that I got to know about Epolicymart from a colleague. Team is really helpful in suggesting the best plan according to the requirements."
-        }
       ]
     }
   }
@@ -179,7 +152,7 @@ export default {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
     .img {
       position: absolute;
-      bottom: -105px;
+      bottom: -65px;
       z-index: 3;
       left: 50%;
       transform: translateX(-50%);

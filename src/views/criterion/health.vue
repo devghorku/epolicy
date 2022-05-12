@@ -9,14 +9,7 @@
         Quote Criterion
       </div>
       <q-space></q-space>
-      <q-btn color="theme-green"
-             class="text-capitalize comp-btn"
-             size="lg"
-              v-if="compareItem.length>0"
-             @click="compareModal=true"
-      >
-        Compare
-      </q-btn>
+
     </div>
     <div class="row q-my-md">
       <div class="col-12 col-md-4 relative-position">
@@ -43,7 +36,7 @@
         <div class="row" v-else-if="policyList.length>0">
           <div class="col-12 col-xl-4 col-sm-6 q-pa-sm"
                v-for="(policy,idx) in filteredPolicyList" :key="idx">
-            <policy-card :policy="policy" @compare="setCompare" style="height: 100%"></policy-card>
+            <policy-card :policy="policy" @compare="setCompare" style="height: 100%" :compare-item="compareItem"></policy-card>
           </div>
         </div>
         <div class="text-center text-theme-green f-20 text-weight-bold" v-else>
@@ -51,8 +44,8 @@
         </div>
       </div>
     </div>
-    <q-dialog v-model="compareModal">
-      <compare-modal @close="compareModal=false" :compare-item="compareItem"></compare-modal>
+    <q-dialog v-model="compareModal" position="bottom" full-width :seamless="true">
+      <compare-modal @close="compareModal=false" :compare-item="compareItem"  @compare="setCompare"></compare-modal>
     </q-dialog>
   </div>
 
@@ -133,21 +126,19 @@ export default {
       this.loading=false
     },
     setCompare(val, item) {
-      if(!val && this.compareItem.findIndex(i => i.productId === item.productId)){
-        var idx = this.compareItem.findIndex(i => i.productId === item.productId)
-        if (idx !== -1) {
-          this.compareItem.splice(idx, 1)
+      if(!val){
+        this.compareItem=this.compareItem.filter(i => i.productId !== item.productId)
+      }else {
+        if (this.compareItem.length >= 3) {
+          this.$q.notify({
+            message: "Can't compare more than 3",
+            color: 'negative'
+          })
+        } else if (!this.compareItem.find(i => i.productId === item.productId)) {
+          this.compareItem.push(item)
         }
       }
-      else if(this.compareItem.length>=3){
-        this.$q.notify({
-          message: "Can't compare more than 3",
-          color: 'negative'
-        })
-      }
-      else if (val && !this.compareItem.find(i=>i.productId===item.productId)) {
-        this.compareItem.push(item)
-      }
+      this.compareModal = this.compareItem.length > 0;
     },
     getProductFeature(product) {
       let d = product.featureGroups.find(item => item.name === 'Filters')

@@ -61,17 +61,17 @@
                    label="Critical Illness"
                    class="text-capitalize">
             </q-tab>
-              <q-tab name="endowment"
-                     icon="fact_check"
-                     label="Endowment"
-                     class="text-capitalize">
-              </q-tab>
+<!--              <q-tab name="endowment"-->
+<!--                     icon="fact_check"-->
+<!--                     label="Endowment"-->
+<!--                     class="text-capitalize">-->
+<!--              </q-tab>-->
 
-            <q-tab name="insurance"
-                   icon="fact_check"
-                   label="Home insurance"
-                   class="text-capitalize">
-            </q-tab>
+<!--            <q-tab name="insurance"-->
+<!--                   icon="fact_check"-->
+<!--                   label="Home insurance"-->
+<!--                   class="text-capitalize">-->
+<!--            </q-tab>-->
           </q-tabs>
           <q-tab-panels v-model="$store.state.currentTab" animated>
             <q-tab-panel name="term">

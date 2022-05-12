@@ -18,7 +18,7 @@
                 <q-btn v-close-popup icon="close" flat>
                 </q-btn>
               </div>
-              <div >
+              <div>
                 <q-btn class="text-decorated f-14 text-capitalize"
                        flat
                        color="theme-green">
@@ -34,9 +34,9 @@
               </div>
               <div class="q-pb-md q-pt-xs q-px-xs">
                 <q-checkbox
-                    v-model="compare"
-                    color="theme-green"
-                    @input="$emit('compare',compare,policy)"
+                    :value="check"
+                    color="theme-green "
+                    @input="$emit('compare',$event,policy)"
                 >
                   <div class="f-16">Compare</div>
                 </q-checkbox>
@@ -78,7 +78,7 @@
                     <q-icon :name="expanded?'expand_less':'expand_more'"
                     ></q-icon>
                   </div>
-                  <div>View {{expanded?'Less':'All'}}</div>
+                  <div>View {{ expanded ? 'Less' : 'All' }}</div>
                 </div>
 
               </q-btn>
@@ -112,7 +112,7 @@
             </q-btn>
           </div>
           <div class="text-center">
-            <q-btn class="text-decorated text-capitalize f-16 f-md-14"  push
+            <q-btn class="text-decorated text-capitalize f-16 f-md-14" push
                    target="_blank"
                    flat
                    type="a"
@@ -123,10 +123,10 @@
           </div>
           <div class="text-center q-pt-lg-lg q-pb-md q-pt-sm">
             <q-checkbox
-                v-model="compare"
+                :value="check"
                 color="theme-green "
                 size="lg"
-                @input="$emit('compare',compare,policy)"
+                @input="$emit('compare',$event,policy)"
             >
               <div class="f-16">Compare</div>
             </q-checkbox>
@@ -145,6 +145,7 @@
 
 <script>
 import PurchaseModal from "../_modal/purchase-modal";
+
 export default {
   name: "policy-card",
   components: {PurchaseModal},
@@ -153,26 +154,34 @@ export default {
       type: Object,
       default: () => {
       }
+    },
+    compareItem: {
+      type: Array,
+      default: () => []
     }
   },
-  data(){
-    return{
-      compare:false,
-      expanded:false,
-      purchaseModal:false
+  data() {
+    return {
+      compare: false,
+      expanded: false,
+      purchaseModal: false
     }
   },
-  computed:{
-    features(){
-      let feature=this.policy.featureGroups.find(item=>item.name==='Display Features')
-      if(this.$q.screen.gt.sm){
+  computed: {
+    features() {
+      let feature = this.policy.featureGroups.find(item => item.name === 'Display Features')
+      if (this.$q.screen.gt.sm) {
 
-        return  feature?feature.productFeatures:[]
-      }
-      else if(this.policy){
-        return this.expanded?feature.productFeatures:feature.productFeatures.slice(0,3)
+        return feature ? feature.productFeatures : []
+      } else if (this.policy) {
+        return this.expanded ? feature.productFeatures : feature.productFeatures.slice(0, 3)
       }
       return []
+    },
+    check() {
+      let val = this.compareItem.find(item => item.productId === this.policy.productId)
+      return !!val;
+
     }
   }
 
@@ -180,24 +189,26 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.policy-card{
+.policy-card {
   border-radius: 20px;
   box-shadow: 4px 4px 22px rgba(0, 0, 0, 0.1);
 
 
-  .border{
+  .border {
     border-bottom: 1px dashed $theme-green;
     margin: 10px 0;
   }
 
-  .q-item__section--avatar{
-    min-width: 40px!important;
+  .q-item__section--avatar {
+    min-width: 40px !important;
   }
 }
-.text-decorated{
+
+.text-decorated {
   text-decoration: underline;
 }
-.img-box{
+
+.img-box {
   width: 150px;
   height: 100px;
   box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.11);

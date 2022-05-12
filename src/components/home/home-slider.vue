@@ -43,14 +43,13 @@ export default {
         "slidesToShow": 8,
         "slidesToScroll":1,
         "arrows": false,
-        "centerMode":false,
+        "centerMode":true,
         "responsive": [
           {
             "breakpoint": 1441,
             "settings": {
               "slidesToShow":7,
               "dots": true,
-              "centerSlide":true
             },
 
           },

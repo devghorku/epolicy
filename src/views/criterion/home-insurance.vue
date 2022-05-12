@@ -36,13 +36,14 @@
       <div class="col-12 col-md-8 q-pt-xl q-pt-md-none">
         <div class="row">
           <div class="col-12 col-sm-6 col-xl-4 q-pa-sm" v-for="(policy,idx) in filteredPolicyList" :key="idx">
-            <policy-card :policy="policy" @compare="setCompare"></policy-card>
+            <policy-card :policy="policy" @compare="setCompare" style="height: 100%" :compare-item="compareItem"></policy-card>
+
           </div>
         </div>
       </div>
     </div>
-    <q-dialog v-model="compareModal">
-      <compare-modal @close="compareModal=false" :compare-item="compareItem"></compare-modal>
+    <q-dialog v-model="compareModal" position="bottom" full-width :seamless="true">
+      <compare-modal @close="compareModal=false" :compare-item="compareItem"  @compare="setCompare"></compare-modal>
     </q-dialog>
   </div>
 
@@ -85,21 +86,19 @@ export default {
 
   methods: {
     setCompare(val, item) {
-      if(!val && this.compareItem.findIndex(i => i.productId === item.productId)){
-        var idx = this.compareItem.findIndex(i => i.productId === item.productId)
-        if (idx !== -1) {
-          this.compareItem.splice(idx, 1)
+      if(!val){
+        this.compareItem=this.compareItem.filter(i => i.productId !== item.productId)
+      }else {
+        if (this.compareItem.length >= 3) {
+          this.$q.notify({
+            message: "Can't compare more than 3",
+            color: 'negative'
+          })
+        } else if (!this.compareItem.find(i => i.productId === item.productId)) {
+          this.compareItem.push(item)
         }
       }
-      else if(this.compareItem.length>=3){
-        this.$q.notify({
-          message: "Can't compare more than 3",
-          color: 'negative'
-        })
-      }
-      else if (val && !this.compareItem.find(i=>i.productId===item.productId)) {
-        this.compareItem.push(item)
-      }
+      this.compareModal = this.compareItem.length > 0;
     },
     getProductFeature(product) {
       let d = product.featureGroups.find(item => item.name === 'Filters')

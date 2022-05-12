@@ -15,7 +15,9 @@ import AccidentCriterion from '../views/criterion/accident'
 import HomeInsuranceCriterion from '../views/criterion/home-insurance'
 import EndowmentCriterion from '../views/criterion/endowment'
 import CriticalIllnessCriterion from '../views/criterion/critical-illness'
-import Error from '../views/404'
+import Error from '../views/404_1'
+import Error2 from '../views/404_2'
+import Error3 from '../views/404_3'
 Vue.use(VueRouter)
 
 const routes = [
@@ -91,6 +93,16 @@ const routes = [
         path: '/404',
         name: 'not-found',
         component: Error
+    },
+    {
+        path: '/405',
+        name: 'not-found2',
+        component: Error2
+    },
+    {
+        path: '/406',
+        name: 'not-found3',
+        component: Error3
     }
 ]
 

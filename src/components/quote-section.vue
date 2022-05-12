@@ -29,8 +29,8 @@ export default {
         // {text: 'Home Insurance', link: '/home-insurance', img: require('@/assets/images/menu/home.svg')},
         // {text: 'Motor Insurance', link: '/motor-insuranc', img: require('@/assets/images/menu/motor.svg')},
 
-        {text: 'Home Insurance', link: '/404', img: require('@/assets/images/menu/home.svg')},
-        {text: 'Motor Insurance', link: '/404', img: require('@/assets/images/menu/motor.svg')},
+        {text: 'Home Insurance', link: '/405', img: require('@/assets/images/menu/home.svg')},
+        {text: 'Motor Insurance', link: '/406', img: require('@/assets/images/menu/motor.svg')},
       ]
     }
   },
