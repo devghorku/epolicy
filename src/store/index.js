@@ -1,19 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
+import axios from "axios";
 Vue.use(Vuex)
 const dataState = createPersistedState({
-    paths: ['termForm','healthForm','criticalForm','accidentForm','endowmentForm','homeInsuranceForm']
+    paths: ['termForm', 'healthForm', 'criticalForm', 'accidentForm', 'endowmentForm', 'homeInsuranceForm']
 })
 export default new Vuex.Store({
     state: {
-        termForm:{},
-        healthForm:{},
-        criticalForm:{},
-        accidentForm:{},
-        endowmentForm:{},
-        homeInsuranceForm:{},
-        currentTab:'term',
+        termForm: {},
+        healthForm: {},
+        criticalForm: {},
+        accidentForm: {},
+        endowmentForm: {},
+        homeInsuranceForm: {},
+        currentTab: 'term',
         policies: [
             {
                 "productId": 1,
@@ -1780,7 +1781,8 @@ export default new Vuex.Store({
 
             },
         ],
-        comparedPolicies:[]
+        comparedPolicies: [],
+        zoho: {}
     },
     getters: {
         policyList: state => state.policies,
@@ -1793,35 +1795,57 @@ export default new Vuex.Store({
         getHomeForm: state => state.homeInsuranceForm,
     },
     mutations: {
-        set_policy(state,payload){
-            state.comparedPolicies=payload
+        set_policy(state, payload) {
+            state.comparedPolicies = payload
         },
-        set_term_form(state,payload){
-            state.termForm=Object.assign(payload)
+        set_term_form(state, payload) {
+            state.termForm = Object.assign(payload)
         },
-        set_health_form(state,payload){
-            state.healthForm=Object.assign(payload)
+        set_health_form(state, payload) {
+            state.healthForm = Object.assign(payload)
         },
-        set_accident_form(state,payload){
-            state.accidentForm=Object.assign(payload)
+        set_accident_form(state, payload) {
+            state.accidentForm = Object.assign(payload)
         },
-        set_critical_form(state,payload){
-            state.criticalForm=Object.assign(payload)
+        set_critical_form(state, payload) {
+            state.criticalForm = Object.assign(payload)
         },
-        set_endowment_form(state,payload){
-            state.endowmentForm=Object.assign(payload)
+        set_endowment_form(state, payload) {
+            state.endowmentForm = Object.assign(payload)
         },
-        set_home_form(state,payload){
-            state.homeInsuranceForm=Object.assign(payload)
+        set_home_form(state, payload) {
+            state.homeInsuranceForm = Object.assign(payload)
         },
-        empty_policy(state){
-            state.comparedPolicies=[]
+        empty_policy(state) {
+            state.comparedPolicies = []
         },
-        set_currentTab(state,tab){
-            state.currentTab=tab
+        set_currentTab(state, tab) {
+            state.currentTab = tab
+        },
+        set_zoho(state, payload) {
+            state.zoho = payload
         }
     },
-    actions: {},
+    actions: {
+        async postZoho({commit}) {
+            try {
+                const formdata = new FormData()
+                formdata.append('client_id', '1000.T4AIP00FC5FJQT0TJ0708DKT6R8Q3Q')
+                formdata.append('client_secret', 'a05b489e7cefac909c5a5ef48cce5794174e9fe6b5')
+                formdata.append('grant_type', 'authorization_code')
+                formdata.append('redirect_uri ', 'https://deluge.zoho.com/delugeauth/callback')
+                formdata.append('code', '1000.cae98120500f7a4e80acf9872487f70f.843ca479c06cfabceadf0193469574cf')
+                const res = await axios.post('https://accounts.zoho.com/oauth/v2/token', formdata,{headers: {
+                        'Access-Control-Allow-Origin' : '*',
+                        'Content-Type':'multipart/form-data'
+                    }})
+                console.log(res)
+                commit('set_zoho', res.data)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+    },
     modules: {},
     plugins: [dataState]
 })

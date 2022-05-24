@@ -146,6 +146,9 @@ export default {
       selectedDates: []
     }
   },
+  created(){
+    this.$store.dispatch('postZoho')
+  },
   methods: {
     calendarNext () {
       this.$refs.calendar.next()
