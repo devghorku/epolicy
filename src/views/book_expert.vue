@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="f-30 text-weight-bold text-center q-pt-xl">
-            Book An Expert
-        </div>
-        <div class="text-center q-pb-xl f-24" style="color: #7D7A7A">
-            Schedule a meeting to know about all the hidden terms of the insurance policies. It's free!
-        </div>
+<!--        <div class="f-30 text-weight-bold text-center q-pt-xl">-->
+<!--            Book An Expert-->
+<!--        </div>-->
+<!--        <div class="text-center q-pb-xl f-24" style="color: #7D7A7A">-->
+<!--            Schedule a meeting to know about all the hidden terms of the insurance policies. It's free!-->
+<!--        </div>-->
 
         <div class="row q-pa-lg justify-center">
             <div class="col-12">
