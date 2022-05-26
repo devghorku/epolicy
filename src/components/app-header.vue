@@ -19,7 +19,7 @@
           <div>
             <q-btn icon-right="phone"
                    type="a"
-                   href="tel:08046810500"
+                   href="tel:+08046810500"
                    class="text-theme-green q-mx-sm br-10 h-lg"
                    outline>
               <span class="text-theme-green q-pr-sm text-h6 ">08046810500</span>

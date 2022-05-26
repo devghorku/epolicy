@@ -4,7 +4,7 @@
       <div class="col-12">
         <q-input outlined
                  v-model="form.current_liability"
-                 class="custom-select q-mb-md"
+                 class="custom-select q-mb-md no-input-spinner"
                  stack-label
                  type="number"
                  label="Current Liability"
@@ -14,7 +14,7 @@
       <div class="col-12">
         <q-input outlined
                  v-model="form.annual_income"
-                 class="custom-select q-mb-md"
+                 class="custom-select q-mb-md no-input-spinner"
                  stack-label
                  type="number"
                  label="Annual Income"
@@ -94,7 +94,7 @@ export default {
     sum_assured() {
       var age = this.$moment().diff(this.$moment(this.form.dob, "DD/MM/YYYY"), 'years', false)
       let l = this.form.current_liability ? parseInt(this.form.current_liability) : 0
-      let i = this.form.annual_income && this.form.annual_income>99999 ? parseInt(this.form.annual_income) : 0
+      let i = this.form.annual_income && this.form.annual_income > 99999 ? parseInt(this.form.annual_income) : 0
       if (age >= 60) {
         return i * 8 + l
       } else if (age >= 50) {
@@ -110,6 +110,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+.no-input-spinner {
 
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+}
 </style>
