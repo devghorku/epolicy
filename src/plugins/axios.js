@@ -4,7 +4,7 @@ import Vue from 'vue';
 import axios from "axios";
 
 // Full config:  https://github.com/axios/axios#request-config
-axios.defaults.baseURL = 'https://www.epolicymart.com/api/';
+axios.defaults.baseURL = 'http://139.59.29.130:8686/api/';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 

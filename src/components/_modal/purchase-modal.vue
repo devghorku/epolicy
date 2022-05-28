@@ -107,10 +107,15 @@ export default {
         try {
           this.form.premium = this.policyItem.yearlyPremium;
           this.form.productId = this.policyItem.productId;
-          let res = await this.axios.post('https://www.epolicymart.com/api/products/term/buy', this.form)
+          let res = await this.axios.post('/products/term/buy', this.form)
           window.open(res.data.redirectUrl, '_blank');
         } catch (e) {
-          console.log(e)
+          if(e.response.data.error) {
+            this.$q.notify({
+              message: e.response.data.error,
+              color: 'negative'
+            })
+          }
         }
       }
 
