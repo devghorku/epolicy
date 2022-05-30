@@ -13,7 +13,8 @@
     </div>
     <div class="row q-my-md">
       <div class="col-12 col-md-4 relative-position">
-        <filter-policy class="filter-sticky-box gt-sm q-my-md" @change="filterChange"></filter-policy>
+        <filter-policy class="filter-sticky-box gt-sm q-my-md" @change="filterChange">
+        </filter-policy>
         <div class="filter-fixed-box lt-md">
           <q-btn icon="tune" color="theme-green" class="filter-btn">
             <q-menu :offset="[0, -40]" class="bg-purple">
@@ -36,7 +37,11 @@
         <div class="row" v-else-if="policyList.length>0">
           <div class="col-12 col-xl-4 col-sm-6 q-pa-sm"
                v-for="(policy,idx) in filteredPolicyList" :key="idx">
-            <policy-card :policy="policy" @compare="setCompare" style="height: 100%" :compare-item="compareItem"></policy-card>
+            <policy-card :policy="policy" @compare="setCompare" style="height: 100%"
+                         :compare-item="compareItem"
+                         url="health"
+            >
+            </policy-card>
           </div>
         </div>
         <div class="text-center text-theme-green f-20 text-weight-bold" v-else>

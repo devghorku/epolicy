@@ -137,7 +137,7 @@
 
     </q-card>
     <q-dialog v-model="purchaseModal">
-      <purchase-modal @close="purchaseModal=false" :policy-item="policy"></purchase-modal>
+      <purchase-modal @close="purchaseModal=false" :policy-item="policy" :url="url"></purchase-modal>
     </q-dialog>
   </div>
 
@@ -158,7 +158,11 @@ export default {
     compareItem: {
       type: Array,
       default: () => []
-    }
+    },
+    url:{
+      type: String,
+      default: 'term'
+    },
   },
   data() {
     return {

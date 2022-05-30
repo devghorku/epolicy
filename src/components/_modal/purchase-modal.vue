@@ -89,7 +89,11 @@ export default {
       type: Object,
       default: () => {
       }
-    }
+    },
+    url:{
+      type: String,
+      default: 'term'
+    },
   },
   data(){
     return{
@@ -107,7 +111,7 @@ export default {
         try {
           this.form.premium = this.policyItem.yearlyPremium;
           this.form.productId = this.policyItem.productId;
-          let res = await this.axios.post('/products/term/buy', this.form)
+          let res = await this.axios.post('/products/'+this.url+'/buy', this.form)
           window.open(res.data.redirectUrl, '_blank');
         } catch (e) {
           if(e.response.data.error) {
