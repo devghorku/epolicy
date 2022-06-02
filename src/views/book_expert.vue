@@ -7,7 +7,7 @@
     <!--            Schedule a meeting to know about all the hidden terms of the insurance policies. It's free!-->
     <!--        </div>-->
     <div class="row q-ma-md items-center wrap">
-    <q-btn icon="arrow_back" unelevated @click="$router.go(-1)">
+    <q-btn icon="arrow_back" unelevated @click="$router.push('/')">
     </q-btn>
     </div>
     <div class="row q-pa-lg justify-center">
