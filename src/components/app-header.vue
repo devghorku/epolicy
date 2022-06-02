@@ -104,6 +104,8 @@
         <q-btn icon-right="phone"
                class="text-theme-green q-mx-sm br-10 h-lg lt-md"
                flat
+               type="a"
+               href="tel:+08046810500"
         >
         </q-btn>
       </q-toolbar>
