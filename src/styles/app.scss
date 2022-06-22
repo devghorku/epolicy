@@ -33,6 +33,12 @@ body {
 }
 .bg-light {
   background: $light;
+  &.q-field{
+    background: transparent;
+    .q-field__inner{
+      background: $light;
+    }
+  }
 }
 
 .text-theme-black {

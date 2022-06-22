@@ -249,6 +249,11 @@ export default {
   async mounted(){
     await this.getData()
   },
+  watch:{
+    $route (){
+      this.email=''
+    }
+  },
   methods:{
     async getData(){
       let res=await this.axios.get('https://pmart-cdn.s3.ap-south-1.amazonaws.com/privacy.md')

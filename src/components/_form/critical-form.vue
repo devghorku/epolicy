@@ -1,5 +1,5 @@
 <template>
-  <q-form>
+  <q-form ref="form">
     <div class="row">
       <div class="col-12">
         <label class="f-14">Cover</label>
@@ -18,7 +18,9 @@
                  dense
                  type="number"
                  error-message="Please enter valid pincode"
-                 :error="!pinValid"
+                 :rules="[
+    (val) => pinValid || 'Please enter valid pin',
+  ]"
                  class="q-mb-md bg-input"
         >
         </q-input>
@@ -98,7 +100,7 @@ export default {
       form: {
         cover: 500000,
         income: "50",
-        pincode:110003,
+        pincode: 110003,
         childrenDobs: [],
         dob: "28/06/1991",
         gender: 'male',
@@ -263,19 +265,30 @@ export default {
       ]
     }
   },
-  computed:{
-    pinValid(){
-      return this.form.pincode.toString().length===6;
+  computed: {
+    pinValid() {
+      return this.form.pincode.toString().length === 6;
     },
-    adultRuleValid(){
-      var age=this.$moment().diff(this.$moment(this.form.dob,"DD/MM/YYYY"),'years',false)
-      return age>=18
+    adultRuleValid() {
+      var age = this.$moment().diff(this.$moment(this.form.dob, "DD/MM/YYYY"), 'years', false)
+      return age >= 18
     },
   },
   methods: {
+
     submitForm() {
-      this.$router.push({name: 'critical-illness-criterion'})
-    }
+      this.$refs.form.validate().then(success => {
+        if (success) {
+          this.$router.push({name: 'critical-illness-criterion'})
+        }
+      })
+    },
+    pad(val) {
+      if (val < 10) {
+        return '0' + val
+      }
+      return val
+    },
   }
 }
 </script>

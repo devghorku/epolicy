@@ -1,5 +1,5 @@
 <template>
-  <q-form>
+  <q-form ref="form">
     <div class="row">
       <div class="col-12">
         <label class="f-14">Cover</label>
@@ -44,16 +44,18 @@
                  v-model="form.dob"
                  mask="##/##/####"
                  readonly
-                 error-message="Please enter valid age >=18 years"
-                 :error="!adultRuleValid"
+                 :rules="[
+    (val) => adultRuleValid || 'Please enter valid age >=18 years.',
+  ]"
                  @click="$refs.qDateProxy.show()"
         >
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy ref="qDateProxy" transition-show="scale"
                              transition-hide="scale">
-                <q-date v-model="form.dob" default-view="Years" mask="DD/MM/YYYY"
-                        :navigation-max-year-month="`${currentYear}/${currentMonth+1}`">
+                <q-date v-model="form.dob" default-view="Years"
+                        mask="DD/MM/YYYY"
+                        :navigation-max-year-month="`${currentYear}/${pad(currentMonth+1)}`">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="Close" color="primary" flat/>
                   </div>
@@ -82,9 +84,10 @@
         <q-btn class="full-width bg-theme-green text-white br-10 f-18 text-capitalize"
                label="Get quote"
                unelevated
-               @click="submitForm">
+               @click.prevent="submitForm">
 
         </q-btn>
+
       </div>
     </div>
   </q-form>
@@ -146,9 +149,9 @@ export default {
     }
   },
   computed: {
-    adultRuleValid(){
-      var age=this.$moment().diff(this.$moment(this.form.dob,"DD/MM/YYYY"),'years',false)
-      return age>=18
+    adultRuleValid() {
+      var age = this.$moment().diff(this.$moment(this.form.dob, "DD/MM/YYYY"), 'years', false)
+      return age >= 18
     },
     termOptions() {
       let options = []
@@ -156,13 +159,25 @@ export default {
         options.push({label: i + ' Years', value: i},)
       }
       return options
-    }
+    },
+
   },
   methods: {
-    async submitForm() {
-      await this.$store.commit("set_term_form",this.form)
-      this.$router.push({name: 'term-criterion'})
-    }
+    submitForm() {
+      this.$refs.form.validate().then(success => {
+        if (success) {
+          this.$store.commit("set_term_form", this.form)
+          this.$router.push({name: 'term-criterion'})
+        }
+      })
+    },
+    pad(val) {
+      if (val < 10) {
+        return '0' + val
+      }
+      return val
+    },
+
   }
 }
 </script>

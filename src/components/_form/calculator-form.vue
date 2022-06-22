@@ -2,25 +2,27 @@
   <q-form>
     <div class="row">
       <div class="col-12">
+        <label>Current Liability</label>
         <q-input outlined
                  v-model="form.current_liability"
                  class="custom-select q-mb-md no-input-spinner"
                  stack-label
                  type="number"
-                 label="Current Liability"
+                 dense
         >
         </q-input>
       </div>
       <div class="col-12">
+        <label>Annual Income</label>
         <q-input outlined
                  v-model="form.annual_income"
                  class="custom-select q-mb-md no-input-spinner"
                  stack-label
                  type="number"
-                 label="Annual Income"
                  ref="annual"
                  :error="numberRules"
                  error-message="Should not less than 1 lac"
+                 dense
 
         >
         </q-input>
@@ -54,12 +56,13 @@
         </q-input>
       </div>
       <div class="col-12">
+        <label>Sum Assured</label>
         <q-input outlined
                  v-model="sum_assured"
                  class="custom-select q-mb-md bg-light"
                  stack-label
                  readonly
-                 label="Sum Assured"
+                 dense
         >
         </q-input>
       </div>

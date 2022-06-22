@@ -1,5 +1,5 @@
 <template>
-  <q-form>
+  <q-form ref="form">
     <div class="row">
       <div class="col-12">
         <label class="f-14">Annual Income Range</label>
@@ -32,15 +32,16 @@
                  v-model="form.birth_date"
                  mask="##/##/####"
                  readonly
-                 error-message="Please enter valid age >=18 years"
-                 :error="!adultRuleValid(form.birth_date)"
+                 :rules="[
+    (val) => adultRuleValid || 'Please enter valid age >=18 years.',
+  ]"
                  @click.prevent="$refs.birth_date.show()">
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy ref="birth_date" transition-show="scale"
                              transition-hide="scale">
                 <q-date v-model="form.birth_date" default-view="Years" mask="DD/MM/YYYY"
-                        :navigation-max-year-month="`${currentYear}/${currentMonth+1}`">
+                        :navigation-max-year-month="`${currentYear}/${pad(currentMonth+1)}`">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="Close" color="primary" flat></q-btn>
                   </div>
@@ -54,11 +55,11 @@
       <div class="col-12">
         <label class="f-14">Occupation</label>
         <q-select outlined
-                 v-model="form.occupation"
-                 type="text"
-                 dense
+                  v-model="form.occupation"
+                  type="text"
+                  dense
                   :options="occupations"
-                 class="custom-select q-mb-md bg-input"
+                  class="custom-select q-mb-md bg-input"
         >
         </q-select>
       </div>
@@ -69,7 +70,9 @@
                  dense
                  type="number"
                  error-message="Please enter valid pincode"
-                 :error="!pinValid"
+                 :rules="[
+    (val) => pinValid || 'Please enter valid pin',
+  ]"
                  class="q-mb-md bg-input"
         >
         </q-input>
@@ -98,7 +101,7 @@ export default {
       form: {
         cover: 500000,
         income: "50",
-        pincode:110003,
+        pincode: 110003,
         childrenDobs: [],
         birth_date: ['28/06/1991'],
         gender: 'male',
@@ -263,18 +266,29 @@ export default {
       ]
     }
   },
-  computed:{
-    pinValid(){
-      return this.form.pincode.toString().length===6;
+  computed: {
+    pinValid() {
+      return this.form.pincode.toString().length === 6;
     },
   },
   methods: {
-    submitForm() {
-      this.$router.push({name: 'personal-accident-criterion'})
+
+    adultRuleValid(val) {
+      var age = this.$moment().diff(this.$moment(val, "DD/MM/YYYY"), 'years', false)
+      return age >= 18
     },
-    adultRuleValid(val){
-      var age=this.$moment().diff(this.$moment(val,"DD/MM/YYYY"),'years',false)
-      return age>=18
+    submitForm() {
+      this.$refs.form.validate().then(success => {
+        if (success) {
+          this.$router.push({name: 'personal-accident-criterion'})
+        }
+      })
+    },
+    pad(val) {
+      if (val < 10) {
+        return '0' + val
+      }
+      return val
     },
   }
 }

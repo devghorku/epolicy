@@ -10,9 +10,9 @@ import VueMoment from 'vue-moment'
 Vue.use(VueMoment)
 
 Vue.config.productionTip = false
-Vue.prototype.$imgUrl='https://pmart-cdn.s3.ap-south-1.amazonaws.com/'
+Vue.prototype.$imgUrl = 'https://pmart-dev.s3.ap-south-1.amazonaws.com/'
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')
