@@ -19,10 +19,10 @@
           <div>
             <q-btn icon-right="phone"
                    type="a"
-                   href="tel:+08046810500"
+                   href="tel:+918046810500"
                    class="text-theme-green q-mx-sm br-10 h-lg"
                    outline>
-              <span class="text-theme-green q-pr-sm text-h6 ">08046810500</span>
+              <span class="text-theme-green q-pr-sm text-h6 ">+918046810500</span>
             </q-btn>
           </div>
           <div>
@@ -104,6 +104,8 @@
         <q-btn icon-right="phone"
                class="text-theme-green q-mx-sm br-10 h-lg lt-md"
                flat
+               type="a"
+               href="tel:+918046810500"
         >
         </q-btn>
       </q-toolbar>

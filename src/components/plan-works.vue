@@ -31,10 +31,10 @@
       <q-btn color="theme-green"
              icon-right="phone"
              type="a"
-             href="tel:+08046810500"
+             href="tel:+918046810500"
              size="lg"
              class="br-10 q-my-md">
-        <span class="q-pr-md">08046810500</span>
+        <span class="q-pr-md">+918046810500</span>
       </q-btn>
     </div>
   </div>
