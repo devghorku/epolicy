@@ -8,6 +8,7 @@
                  contain
                  width="100%"
                  height="100%"
+                 :eager="true"
           />
         </div>
 

@@ -101,8 +101,7 @@ export default {
       faqs: [
         {
           q: 'Q1 : Do I need Term Insurance?',
-          ans: 'In case you have dependents that are fully, or even partially,' +
-              ' dependent on your income, you may need Term life insurance.'
+          ans: 'In case you have dependents that are fully, or even partially, dependent on your income, you may need term life insurance.'
         },
         {
           q: 'Q2 : What is the benefit of buying term insurance over any other type of policy?',
@@ -150,9 +149,7 @@ export default {
         },
         {
           q: 'Q8 : Do I get any tax benefits?',
-          ans: 'The premium paid for term insurance is tax-exempted under section 80(C) of IT act, 1961 ' +
-              'and the sum assured received is tax-free under section 10D(D) of IT act, 1961. ' +
-              'Though, tax laws are subject to change.'
+          ans: 'The premium paid for term insurance is tax-exempted under section 80(C) of IT act, 1961, and the sum assured received is tax-free under section 10(10D) of IT act 1961. Though, tax laws are subject to change.'
         }
       ]
     }

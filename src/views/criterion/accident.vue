@@ -9,14 +9,6 @@
         Quote Criterion
       </div>
       <q-space></q-space>
-      <q-btn color="theme-green"
-             class="text-capitalize comp-btn"
-             size="lg"
-              v-if="compareItem.length>0"
-             @click="compareModal=true"
-      >
-        Compare
-      </q-btn>
     </div>
     <div class="row q-my-md">
       <div class="col-12 col-md-4 relative-position">

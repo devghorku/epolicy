@@ -97,6 +97,12 @@ export default {
               "I highly recommend epolicymart as the choice of provider of all your insurance needs." +
               "Thank you for your guidance & support."
         },
+              {          id: 2,
+          name: 'Saurabh Nigam',
+          img: require('@/assets/images/testimonal/surab.jpeg'),
+          text: "It was a fantastic experience for me throughout. The team is having quite a lot of learned professionals. They suggest the best optimum plans as per individual needs with the lowest premiums and round-the-clock service."
+
+        },
       ]
     }
   }
