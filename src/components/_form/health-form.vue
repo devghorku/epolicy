@@ -125,6 +125,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
   name: "health-form",
   data() {
@@ -185,7 +186,17 @@ export default {
     pinValid() {
       return this.form.pincode.toString().length === 6;
     },
-
+    ...mapGetters(['getHealthForm'])
+  },
+  mounted() {
+    this.form = this.getHealthForm ? this.getHealthForm : {
+      cover: 500000,
+      gender: "M",
+      income: "50",
+      pincode: 110003,
+      adultsDobs: ['28/06/1991'],
+      childrenDobs: []
+    }
   },
   methods: {
     submitForm() {

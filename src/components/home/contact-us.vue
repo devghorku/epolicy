@@ -24,7 +24,9 @@
                          v-model="contactForm.name"
                          class="q-mb-md q-mr-md bg-light br-10"
                          dense
-                         placeholder="example"
+                         @keypress="onlyText($event)"
+                         placeholder="Name"
+                         :rules="[v => !!v || 'Field is required']"
                 >
                 </q-input>
               </div>
@@ -37,7 +39,7 @@
                          class="q-mb-md q-mr-md bg-light br-10"
                          dense
                          placeholder="example@gmail.com"
-                         :rules="[val => !!val || 'Field is required',v => /.+@.+\..+/.test(v) || 'E-mail must be valid',]"
+                         :rules="[v => !!v || 'Field is required',v => /.+@.+\..+/.test(v) || 'E-mail must be valid',]"
                 >
                 </q-input>
               </div>
@@ -45,11 +47,12 @@
                 <label>Mobile</label>
                 <q-input outlined
                          v-model="contactForm.phone"
-                         class="q-mb-md q-mr-md bg-light br-10"
+                         class="q-mb-md q-mr-md bg-light br-10 phone"
                          dense
-                         maxlength="10"
                          placeholder="+91"
-                         @keypress="phoneno"
+                         maxlength="10"
+                         @keypress="check($event)"
+                         :rules="[v => !!v || 'Field is required',v => /\d{10}/.test(v) || 'Must be 10 digit']"
                 >
                 </q-input>
               </div>
@@ -89,29 +92,30 @@ export default {
     }
   },
   methods: {
-    isValidEmail(val) {
-      const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/;
-      return emailPattern.test(val) || 'Invalid email';
-    },
     submit() {
       if (this.$refs.form.validate()) {
         console.log(this.contactForm)
       }
     },
-    phoneno(e) {
-      var a = [];
-      var k = e.which;
-
-      for (let i = 48; i < 58; i++)
-        a.push(i);
-      this.contactForm.phone=a
-      if (!(a.indexOf(k) >= 0))
+    check(e) {
+      if (e.which < 48 || e.which > 57) e.preventDefault()
+    },
+    onlyText(e) {
+      var key = e.keyCode;
+      if (key >= 48 && key <= 57) {
         e.preventDefault();
+      }
     }
   }
 }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+.phone{
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
 </style>

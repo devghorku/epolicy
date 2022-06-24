@@ -94,6 +94,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
   name: "term-form",
   data() {
@@ -160,7 +161,17 @@ export default {
       }
       return options
     },
-
+    ...mapGetters(['getTermForm'])
+  },
+  mounted() {
+    this.form = this.getTermForm ? this.getTermForm : {
+      cover: 5000000,
+      dob: "28/06/1991",
+      income: "50",
+      gender: 'M',
+      isSmoker: 'N',
+      term: 10
+    }
   },
   methods: {
     submitForm() {

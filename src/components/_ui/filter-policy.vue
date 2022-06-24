@@ -9,8 +9,7 @@
           color="theme-green"
           v-model="filter.room_rent"
           class="q-px-xl"
-          @input="$emit('change',filter)"
-      />
+          @input="$emit('change',filter)"></q-option-group>
     </div>
     <div class="f-16 text-theme-green text-weight-bold q-mx-xl q-mb-sm">Hospitalization</div>
     <div class="q-mb-md">
@@ -20,8 +19,7 @@
           color="theme-green"
           v-model="filter.hospitalization"
           class="q-px-xl"
-          @input="$emit('change',filter)"
-      />
+          @input="$emit('change',filter)"></q-option-group>
     </div>
     <div class="f-16 text-theme-green text-weight-bold q-mx-xl q-mb-sm">PED Waiting</div>
     <div class="q-mb-md">
@@ -31,8 +29,7 @@
           color="theme-green"
           v-model="filter.ped_waiting"
           class="q-px-xl"
-          @input="$emit('change',filter)"
-      />
+          @input="$emit('change',filter)"></q-option-group>
     </div>
 
     <!--        <div class="q-px-xs-xl q-px-sm-none q-py-md">-->
@@ -44,7 +41,17 @@
 <script>
 export default {
   name: "filter-policy",
-
+  props:{
+    type:{
+      type:String,
+      default:''
+    }
+  },
+  mounted(){
+    if(this.type==='health') {
+      this.filter = this.$store.state.h_filter
+    }
+  },
   data() {
     return {
       filter:{

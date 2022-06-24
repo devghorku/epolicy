@@ -1,16 +1,47 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
+
 Vue.use(Vuex)
 const dataState = createPersistedState({
-    paths: ['termForm', 'healthForm', 'criticalForm', 'accidentForm', 'endowmentForm', 'homeInsuranceForm']
+    paths: ['termForm', 'healthForm', 'criticalForm', 'accidentForm', 'endowmentForm', 'homeInsuranceForm','h_filter']
 })
 export default new Vuex.Store({
     state: {
-        termForm: {},
-        healthForm: {},
-        criticalForm: {},
-        accidentForm: {},
+        termForm: {
+            cover: 5000000,
+            dob: "28/06/1991",
+            income: "50",
+            gender: 'M',
+            isSmoker: 'N',
+            term: 10
+        },
+        healthForm: {
+            cover: 500000,
+            gender: "M",
+            income: "50",
+            pincode: 110003,
+            adultsDobs: ['28/06/1991'],
+            childrenDobs: []
+        },
+        criticalForm: {
+            cover: 500000,
+            income: "50",
+            pincode: 110003,
+            childrenDobs: [],
+            dob: "28/06/1991",
+            gender: 'male',
+            smoke: 'yes'
+        },
+        accidentForm: {
+            cover: 500000,
+            income: "50",
+            pincode: 110003,
+            childrenDobs: [],
+            birth_date: ['28/06/1991'],
+            gender: 'male',
+            smoke: 'yes'
+        },
         endowmentForm: {},
         homeInsuranceForm: {},
         currentTab: 'term',
@@ -1781,6 +1812,21 @@ export default new Vuex.Store({
             },
         ],
         comparedPolicies: [],
+        h_filter: {
+            room_rent: [],
+            hospitalization: [],
+            ped_waiting: [],
+        },
+        c_filter: {
+            room_rent: [],
+            hospitalization: [],
+            ped_waiting: [],
+        },
+        p_filter: {
+            room_rent: [],
+            hospitalization: [],
+            ped_waiting: [],
+        },
     },
     getters: {
         policyList: state => state.policies,
@@ -1819,6 +1865,15 @@ export default new Vuex.Store({
         },
         set_currentTab(state, tab) {
             state.currentTab = tab
+        },
+        set_h_filter(state, payload) {
+            state.h_filter = payload
+        },
+        set_a_filter(state, payload) {
+            state.a_filter = payload
+        },
+        set_p_filter(state, payload) {
+            state.p_filter = payload
         }
     },
     actions: {},

@@ -3,13 +3,15 @@
     <q-footer class="relative-position own-footer">
       <div class="q-px-lg q-pa-sm-xl q-pa-xs-md">
         <div class="row">
-          <div class="col-12 q-mb-lg">
+          <q-form class="col-12 q-mb-lg" ref="subscribeForm">
             <q-input outlined
                      v-model="email"
                      type="email"
                      placeholder="Enter your email address"
                      class="bg-white br-10 q-mx-auto f-16"
+                     hide-bottom-space
                      style="max-width: 832px;"
+                     :rules="[v => /.+@.+\..+/.test(v) || 'E-mail must be valid']"
             >
               <template v-slot:append>
                 <q-btn color="theme-green"
@@ -20,7 +22,7 @@
                 </q-btn>
               </template>
             </q-input>
-          </div>
+          </q-form>
           <div class="col-sm-6 col-lg-2 col-12 q-pa-xs-md">
             <div class="text-white f-16 q-pb-lg">Company Info</div>
             <div class="text-theme-light" v-html="company.address">
@@ -47,7 +49,8 @@
               <a class="text-theme-light no-underline q-pb-sm t-link" href="https://www.policyholder.gov.in/">
                 IRDAI Consumer Education
               </a>
-              <a class="text-theme-light no-underline q-pb-sm t-link" href="https://irdai.gov.in/ADMINCMS/cms/NormalData_Layout.aspx?page=PageNo226&mid=14.3">
+              <a class="text-theme-light no-underline q-pb-sm t-link"
+                 href="https://irdai.gov.in/ADMINCMS/cms/NormalData_Layout.aspx?page=PageNo226&mid=14.3">
                 Integrated Grievance Management System (IGMS) IRDAI
               </a>
             </div>
@@ -225,6 +228,7 @@
 
 <script>
 import {marked} from 'marked'
+
 export default {
   name: "app-footer",
   data() {
@@ -235,9 +239,9 @@ export default {
       termModal: false,
       disclaimerModal: false,
       certificateModal: false,
-      privacy:'',
-      term:'',
-      disclaimer:'',
+      privacy: '',
+      term: '',
+      disclaimer: '',
       company: {
         address: 'Vivaan Insurance Web Aggregator Pvt. Ltd. E3044 Raja ji Puram, Lucknow, 226017, UP India contact@epolicymart.com' +
             '<br><br>' +
@@ -246,22 +250,26 @@ export default {
       certificate: require('../assets/images/home/CertificateofRegistration_ePolicyMart.jpg')
     }
   },
-  async mounted(){
+  async mounted() {
     await this.getData()
   },
-  watch:{
-    $route (){
-      this.email=''
+  watch: {
+    $route() {
+      this.email = '';
+      setTimeout(()=>{
+        this.$refs.subscribeForm.resetValidation()
+      },100)
+
     }
   },
-  methods:{
-    async getData(){
-      let res=await this.axios.get('https://pmart-cdn.s3.ap-south-1.amazonaws.com/privacy.md')
-      this.privacy=marked(res.data)
-      let res2=await this.axios.get('https://pmart-cdn.s3.ap-south-1.amazonaws.com/tnc.md')
-      this.term=marked(res2.data)
-      let res3=await this.axios.get('https://pmart-cdn.s3.ap-south-1.amazonaws.com/disclaimer.md')
-      this.disclaimer=marked(res3.data)
+  methods: {
+    async getData() {
+      let res = await this.axios.get(this.$imgUrl+'privacy.md')
+      this.privacy = marked(res.data)
+      let res2 = await this.axios.get(this.$imgUrl+'tnc.md')
+      this.term = marked(res2.data)
+      let res3 = await this.axios.get(this.$imgUrl+'disclaimer.md')
+      this.disclaimer = marked(res3.data)
     }
   }
 }

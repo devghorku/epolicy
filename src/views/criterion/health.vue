@@ -13,7 +13,8 @@
     </div>
     <div class="row q-my-md">
       <div class="col-12 col-md-4 relative-position">
-        <filter-policy class="filter-sticky-box gt-sm q-my-md" @change="filterChange">
+        <filter-policy class="filter-sticky-box gt-sm q-my-md"
+                       @change="filterChange" type="health">
         </filter-policy>
         <div class="filter-fixed-box lt-md">
           <q-btn icon="tune" color="theme-green" class="filter-btn">
@@ -22,7 +23,10 @@
                 <q-btn v-close-popup icon="close" flat>
                 </q-btn>
               </div>
-              <filter-policy class="" @change="filterChange"></filter-policy>
+              <filter-policy class=""
+                             @change="filterChange" type="health">
+
+              </filter-policy>
             </q-menu>
           </q-btn>
         </div>
@@ -50,7 +54,7 @@
       </div>
     </div>
     <q-dialog v-model="compareModal" position="bottom" full-width :seamless="true">
-      <compare-modal @close="compareModal=false" :compare-item="compareItem"  @compare="setCompare"></compare-modal>
+      <compare-modal @close="compareModal=false" :compare-item="compareItem" @compare="setCompare"></compare-modal>
     </q-dialog>
   </div>
 
@@ -70,38 +74,38 @@ export default {
     filteredPolicyList() {
       var data = this.policyList
       console.log(this.filter.room_rent)
-      if (this.filter.room_rent.length>0) {
-        data=data.filter(policy=>{
-          let val=this.getFeatureValue(policy,'Room Rent Limit')
+      if (this.filter.room_rent.length > 0) {
+        data = data.filter(policy => {
+          let val = this.getFeatureValue(policy, 'Room Rent Limit')
           return this.filter.room_rent.includes(val)
         })
       }
-      if(this.filter.ped_waiting.length>0){
-        data=data.filter(policy=>{
-          let val=this.getFeatureValue(policy,'PED Waiting Period')
+      if (this.filter.ped_waiting.length > 0) {
+        data = data.filter(policy => {
+          let val = this.getFeatureValue(policy, 'PED Waiting Period')
           return this.filter.ped_waiting.includes(val)
         })
       }
-      if(this.filter.hospitalization.length>0){
-        data=data.filter(policy=>{
-          let hosp=[];
-          if(this.getFeatureValue(policy,'OPD') === 'Y'){
+      if (this.filter.hospitalization.length > 0) {
+        data = data.filter(policy => {
+          let hosp = [];
+          if (this.getFeatureValue(policy, 'OPD') === 'Y') {
             hosp.push('opd')
           }
-          if(this.getFeatureValue(policy,'No Co-Payment') === 'Y'){
+          if (this.getFeatureValue(policy, 'No Co-Payment') === 'Y') {
             hosp.push('ncp')
           }
-          if(this.getFeatureValue(policy,'Maternity') === 'Y'){
+          if (this.getFeatureValue(policy, 'Maternity') === 'Y') {
             hosp.push('maternity')
           }
-          if(this.getFeatureValue(policy,'Restoration Benefit') === 'Y'){
+          if (this.getFeatureValue(policy, 'Restoration Benefit') === 'Y') {
             hosp.push('restoration')
           }
-          if(this.getFeatureValue(policy,'Ayush Benefit') === 'Y'){
+          if (this.getFeatureValue(policy, 'Ayush Benefit') === 'Y') {
             hosp.push('ayush')
           }
-          console.log(this.filter.hospitalization,hosp)
-          return this.filter.hospitalization.every( ai => hosp.includes(ai) )
+          console.log(this.filter.hospitalization, hosp)
+          return this.filter.hospitalization.every(ai => hosp.includes(ai))
         })
       }
       return data
@@ -109,8 +113,8 @@ export default {
   },
   data() {
     return {
-      loading:false,
-      policyList:[],
+      loading: false,
+      policyList: [],
       compareItem: [],
       compareModal: false,
       filter: {
@@ -120,20 +124,20 @@ export default {
       },
     }
   },
-  async mounted(){
+  async mounted() {
     await this.getData()
   },
   methods: {
-    async getData(){
-      this.loading=true
-      const res = await this.axios.post('products/health/search',this.getHealthForm)
-      this.policyList=res.data
-      this.loading=false
+    async getData() {
+      this.loading = true
+      const res = await this.axios.post('products/health/search', this.getHealthForm)
+      this.policyList = res.data
+      this.loading = false
     },
     setCompare(val, item) {
-      if(!val){
-        this.compareItem=this.compareItem.filter(i => i.productId !== item.productId)
-      }else {
+      if (!val) {
+        this.compareItem = this.compareItem.filter(i => i.productId !== item.productId)
+      } else {
         if (this.compareItem.length >= 3) {
           this.$q.notify({
             message: "Can't compare more than 3",
@@ -151,16 +155,16 @@ export default {
         return d.productFeatures
       } else return []
     },
-    getFeatureValue(product,name){
+    getFeatureValue(product, name) {
       let feature = this.getProductFeature(product)
-      let sub_feature=feature.find(item=>item.name===name)
-      if(sub_feature){
+      let sub_feature = feature.find(item => item.name === name)
+      if (sub_feature) {
         return sub_feature.value
       }
     },
     filterChange(item) {
       this.filter = item;
-      console.log(this.filter.room_rent)
+      this.$store.commit('set_h_filter', this.filter)
     }
   }
 

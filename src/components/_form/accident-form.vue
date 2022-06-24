@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
   name: "accident-form",
   data() {
@@ -270,6 +271,18 @@ export default {
     pinValid() {
       return this.form.pincode.toString().length === 6;
     },
+    ...mapGetters(['getAccidentForm'])
+  },
+  mounted() {
+    this.form = this.getAccidentForm ? this.getAccidentForm : {
+      cover: 500000,
+      income: "50",
+      pincode: 110003,
+      childrenDobs: [],
+      birth_date: ['28/06/1991'],
+      gender: 'male',
+      smoke: 'yes'
+    }
   },
   methods: {
 

@@ -89,6 +89,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
   name: "critical-form",
   data() {
@@ -273,6 +274,18 @@ export default {
       var age = this.$moment().diff(this.$moment(this.form.dob, "DD/MM/YYYY"), 'years', false)
       return age >= 18
     },
+    ...mapGetters(['getCriticalForm'])
+  },
+  mounted() {
+    this.form = this.getCriticalForm ? this.getCriticalForm : {
+      cover: 500000,
+      income: "50",
+      pincode: 110003,
+      childrenDobs: [],
+      dob: "28/06/1991",
+      gender: 'male',
+      smoke: 'yes'
+    }
   },
   methods: {
 

@@ -22,47 +22,50 @@
       </div>
       <div>
         <q-form ref="form">
-         <div class="row">
-           <div class="col-12">
-             <label class="f-14">Name</label>
-             <q-input outlined
-                      v-model="form.name"
-                      dense
-                      :rules="[val => !!val || 'Field is required']"
-                      placeholder="Enter your name"
-                      class="q-mb-md bg-input"
-             >
-             </q-input>
-           </div>
-           <div class="col-12">
-             <label class="f-14">Mobile</label>
-             <q-input outlined
-                      v-model="form.mobile"
-                      dense
-                      :rules="[val => !!val || 'Field is required']"
-                      placeholder="Enter your mobile number"
-                      class="q-mb-md bg-input"
-             >
-             </q-input>
-           </div>
-           <div class="col-12">
-             <label class="f-14">email</label>
-             <q-input outlined
-                      v-model="form.email"
-                      dense
-                      type="email"
-                      :rules="[val => !!val || 'Field is required',v => /.+@.+\..+/.test(v) || 'E-mail must be valid',]"
-                      placeholder="Enter your Email"
-                      class="q-mb-md bg-input"
-             >
-             </q-input>
-           </div>
-           <div class="col-12">
-             <q-checkbox v-model="form.agree" color="theme-green" :rules="[val => !!val || 'Field is required']">
-               I have read Terms Conditions & Privacy Policy documents
-             </q-checkbox>
-             </div>
-         </div>
+          <div class="row">
+            <div class="col-12">
+              <label class="f-14">Name</label>
+              <q-input outlined
+                       v-model="form.name"
+                       dense
+                       @keypress="onlyText($event)"
+                       :rules="[v => !!v || 'Field is required']"
+                       placeholder="Enter your name"
+                       class="q-mb-md bg-input"
+              >
+              </q-input>
+            </div>
+            <div class="col-12">
+              <label class="f-14">Mobile</label>
+              <q-input outlined
+                       v-model="form.mobile"
+                       dense
+                       maxlength="10"
+                       @keypress="check($event)"
+                       :rules="[v => !!v || 'Field is required',v => /\d{10}/.test(v) || 'Must be 10 digit']"
+                       placeholder="Enter your mobile number"
+                       class="q-mb-md bg-input"
+              >
+              </q-input>
+            </div>
+            <div class="col-12">
+              <label class="f-14">email</label>
+              <q-input outlined
+                       v-model="form.email"
+                       dense
+                       type="email"
+                       :rules="[val => !!val || 'Field is required',v => /.+@.+\..+/.test(v) || 'E-mail must be valid',]"
+                       placeholder="Enter your Email"
+                       class="q-mb-md bg-input"
+              >
+              </q-input>
+            </div>
+            <div class="col-12">
+              <q-checkbox v-model="form.agree" color="theme-green" :rules="[val => !!val || 'Field is required']">
+                I have read Terms Conditions & Privacy Policy documents
+              </q-checkbox>
+            </div>
+          </div>
         </q-form>
       </div>
       <div class="text-center q-mt-md">
@@ -82,6 +85,7 @@
 </template>
 
 <script>
+
 export default {
   name: "purchase-modal",
   props: {
@@ -90,31 +94,32 @@ export default {
       default: () => {
       }
     },
-    url:{
+    url: {
       type: String,
       default: 'term'
     },
   },
-  data(){
-    return{
-      form:{
-        agree:false,
-        email:'',
-        mobile:'',
-        name:''
+  data() {
+    return {
+      form: {
+        agree: false,
+        email: '',
+        mobile: '',
+        name: ''
       }
     }
   },
+
   methods: {
-    async submit(){
-      if(this.$refs.form.validate()) {
+    async submit() {
+      if (this.$refs.form.validate()) {
         try {
           this.form.premium = this.policyItem.yearlyPremium;
           this.form.productId = this.policyItem.productId;
-          let res = await this.axios.post('/products/'+this.url+'/buy', this.form)
+          let res = await this.axios.post('/products/' + this.url + '/buy', this.form)
           window.open(res.data.redirectUrl, '_blank');
         } catch (e) {
-          if(e.response.data.error) {
+          if (e.response.data.error) {
             this.$q.notify({
               message: e.response.data.error,
               color: 'negative'
@@ -124,6 +129,15 @@ export default {
       }
 
 
+    },
+    check(e) {
+      if (e.which < 48 || e.which > 57) e.preventDefault()
+    },
+    onlyText(e) {
+      var key = e.keyCode;
+      if (key >= 48 && key <= 57) {
+        e.preventDefault();
+      }
     }
   }
 }
