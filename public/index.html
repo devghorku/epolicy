@@ -1,17 +1,48 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    <style>
+        .engt-launcher {
+            right: 40px !important;
+            left: unset !important;
+        }
+
+        .engt-launcher-button {
+            width: 60px !important;
+            height: 60px !important;
+            background-size: 60px 60px !important;
+        }
+
+        @media (max-width: 600px) {
+            .engt-launcher-button {
+                width: 40px !important;
+                height: 40px !important;
+                background-size: 40px 40px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+</noscript>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+<script>!function (e, t, a) {
+    var c = e.head || e.getElementsByTagName("head")[0], n = e.createElement("script");
+    n.async = !0, n.defer = !0, n.type = "text/javascript", n.src = t + "/static/js/chat_widget.js?config=" + JSON.stringify(a), c.appendChild(n)
+}(document, "https://app.engati.com", {
+    bot_key: "9845585b1cf74aea",
+    welcome_msg: true,
+    branding_key: "default",
+    server: "https://app.engati.com",
+    e: "p"
+});</script>
+</body>
 </html>

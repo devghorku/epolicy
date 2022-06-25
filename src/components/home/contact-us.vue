@@ -93,9 +93,9 @@ export default {
   },
   methods: {
     submit() {
-      if (this.$refs.form.validate()) {
-        console.log(this.contactForm)
-      }
+     this.$refs.form.validate().then(async success => {
+        if (success) {console.log(this.contactForm)}
+      })
     },
     check(e) {
       if (e.which < 48 || e.which > 57) e.preventDefault()
