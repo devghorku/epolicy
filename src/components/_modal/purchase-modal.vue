@@ -113,23 +113,25 @@
 
         methods: {
             async submit() {
-                this.$refs.form.validate().then(async success => {
-                    if (success) {
-                        try {
-                            this.form.premium = this.policyItem.yearlyPremium;
-                            this.form.productId = this.policyItem.productId;
-                            let res = await this.axios.post('/products/' + this.url + '/buy', this.form)
-                            window.open(res.data.redirectUrl, '_blank');
-                        } catch (e) {
-                            if (e.response.data.error) {
-                                this.$q.notify({
-                                    message: e.response.data.error,
-                                    color: 'negative'
-                                })
+
+                    this.$refs.form.validate().then(async success => {
+                        if (success && this.form.agree) {
+                            try {
+                                this.form.premium = this.policyItem.yearlyPremium;
+                                this.form.productId = this.policyItem.productId;
+                                let res = await this.axios.post('/products/' + this.url + '/buy', this.form)
+                                window.open(res.data.redirectUrl, '_blank');
+                            } catch (e) {
+                                if (e.response.data.error) {
+                                    this.$q.notify({
+                                        message: e.response.data.error,
+                                        color: 'negative'
+                                    })
+                                }
                             }
                         }
-                    }
-                })
+                    })
+
             },
             check(e) {
                 if (e.which < 48 || e.which > 57) e.preventDefault()
