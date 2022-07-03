@@ -18,6 +18,20 @@
     export default {
         name: 'LayoutDefault',
         components: {AppFooter, AppHeader},
+        mounted() {
+            setTimeout(() => {
+                let el = document.getElementById('engt-close-button');
+                let el2 = document.getElementById('engt-launcher-button');
+                if (el) {
+                    el.addEventListener("click", function () {
+                        if(el2){
+                            el2.classList.add('visited')
+                        }
+                    })
+                }
+            }, 1000)
+
+        }
     }
 </script>
 
