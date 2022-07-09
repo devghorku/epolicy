@@ -204,6 +204,8 @@
         },
         methods: {
             submitForm() {
+                this.form.adultsDobs = this.form.adultsDobs.slice(0, this.form.adult_no)
+                this.form.childrenDobs = this.form.childrenDobs.slice(0, this.form.child_no)
                 this.$refs.form.validate().then(success => {
                     if (success) {
                         this.$store.commit("set_health_form", this.form)
