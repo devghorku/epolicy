@@ -4,7 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 const dataState = createPersistedState({
-    paths: ['termForm', 'healthForm', 'criticalForm', 'accidentForm', 'endowmentForm', 'homeInsuranceForm','h_filter']
+    paths: ['termForm', 'healthForm', 'criticalForm', 'accidentForm', 'endowmentForm', 'homeInsuranceForm', 'h_filter']
 })
 export default new Vuex.Store({
     state: {
@@ -22,7 +22,9 @@ export default new Vuex.Store({
             income: "50",
             pincode: 110003,
             adultsDobs: ['28/06/1991'],
-            childrenDobs: []
+            childrenDobs: [],
+            adult_no: 1,
+            child_no: 0,
         },
         criticalForm: {
             cover: 500000,
