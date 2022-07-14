@@ -51,16 +51,16 @@
                    label="Health"
                    class="text-capitalize">
             </q-tab>
-            <q-tab name="accident"
-                   icon="fact_check"
-                   label="Personal Accident"
-                   class="text-capitalize">
-            </q-tab>
-            <q-tab name="critical"
-                   icon="fact_check"
-                   label="Critical Illness"
-                   class="text-capitalize">
-            </q-tab>
+<!--            <q-tab name="accident"-->
+<!--                   icon="fact_check"-->
+<!--                   label="Personal Accident"-->
+<!--                   class="text-capitalize">-->
+<!--            </q-tab>-->
+<!--            <q-tab name="critical"-->
+<!--                   icon="fact_check"-->
+<!--                   label="Critical Illness"-->
+<!--                   class="text-capitalize">-->
+<!--            </q-tab>-->
 <!--              <q-tab name="endowment"-->
 <!--                     icon="fact_check"-->
 <!--                     label="Endowment"-->
@@ -81,19 +81,19 @@
             <q-tab-panel name="health">
               <health-form/>
             </q-tab-panel>
-            <q-tab-panel name="accident">
-             <accident-form/>
-            </q-tab-panel>
-            <q-tab-panel name="critical">
-              <critical-form/>
-            </q-tab-panel>
-            <q-tab-panel name="endowment">
-             <endowment-form/>
-            </q-tab-panel>
+<!--            <q-tab-panel name="accident">-->
+<!--             <accident-form/>-->
+<!--            </q-tab-panel>-->
+<!--            <q-tab-panel name="critical">-->
+<!--              <critical-form/>-->
+<!--            </q-tab-panel>-->
+<!--            <q-tab-panel name="endowment">-->
+<!--             <endowment-form/>-->
+<!--            </q-tab-panel>-->
 
-            <q-tab-panel name="insurance">
-             <insurance-form/>
-            </q-tab-panel>
+<!--            <q-tab-panel name="insurance">-->
+<!--             <insurance-form/>-->
+<!--            </q-tab-panel>-->
           </q-tab-panels>
         </q-card-section>
       </q-card>
@@ -105,14 +105,15 @@
 <script>
 import TermForm from "../_form/term-form";
 import HealthForm from "../_form/health-form";
-import CriticalForm from "../_form/critical-form";
-import EndowmentForm from "../_form/endowment-form";
-import InsuranceForm from "../_form/insurance-form";
-import AccidentForm from "../_form/accident-form";
+// import CriticalForm from "../_form/critical-form";
+// import EndowmentForm from "../_form/endowment-form";
+// import InsuranceForm from "../_form/insurance-form";
+// import AccidentForm from "../_form/accident-form";
 
 export default {
   name: "banner-form",
-  components: {AccidentForm, InsuranceForm, EndowmentForm, CriticalForm, HealthForm, TermForm},
+  components: {
+    HealthForm, TermForm},
   data() {
     return {
       bannerImg: require('../../assets/images/home/Top Illustration.svg'),

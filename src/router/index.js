@@ -18,6 +18,8 @@ import CriticalIllnessCriterion from '../views/criterion/critical-illness'
 import Error from '../views/404_1'
 import Error2 from '../views/404_2'
 import Error3 from '../views/404_3'
+import Error4 from '../views/404_4'
+import Error5 from '../views/404_5'
 Vue.use(VueRouter)
 
 const routes = [
@@ -103,6 +105,16 @@ const routes = [
         path: '/406',
         name: 'not-found3',
         component: Error3
+    },
+    {
+        path: '/407',
+        name: 'not-found3',
+        component: Error4
+    },
+    {
+        path: '/408',
+        name: 'not-found3',
+        component: Error5
     }
 ]
 
